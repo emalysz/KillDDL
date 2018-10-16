@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "191412298025",
+    "firebase_url": "https://killddl-12fde.firebaseio.com",
+    "project_id": "killddl-12fde",
+    "storage_bucket": "killddl-12fde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191412298025:android:643f090412ad66d4",
+        "android_client_info": {
+          "package_name": "com.example.emmamalysz.killddl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191412298025-58rk7fsscrk1i3aaqqs03dq05crn5h0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.emmamalysz.killddl",
+            "certificate_hash": "eff20ec99acfb53b43294976d957f7a6aebe776e"
+          }
+        },
+        {
+          "client_id": "191412298025-s5407sllp9hvcfd5op39j1v2qqsf3dum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLHR-rsF1q-zGvmuUuacu4hnxNb8DDt8I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191412298025-s5407sllp9hvcfd5op39j1v2qqsf3dum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
