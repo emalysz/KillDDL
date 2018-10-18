@@ -52,8 +52,9 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String date = (dayOfMonth) + " " + (month + 1) + " " + (year);
                 myDate.setText(date);
+                Date dateToSend = new Date(year, month, dayOfMonth);
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.putExtra("DATE", date);
+                intent.putExtra("DATE", dateToSend);
                 startActivity(intent);
             }
         });
@@ -62,10 +63,11 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String s = deadlineList.getItemAtPosition(i).toString();
+                Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
                 // change activity which is sent to DEADLINEVIEW
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.putExtra("DEADLINE", s);
+                intent.putExtra("DEADLINE", selectedDeadline);
+                // to retrieve: getSerializable extra
                 startActivity(intent);
             }
         });
