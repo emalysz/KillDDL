@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Deadline implements Serializable {
 
-    private String title, description, color;
+    private String title, description;
     private Date date;
     private int priority;
     private int notification;
