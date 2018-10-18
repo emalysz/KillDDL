@@ -3,21 +3,22 @@ package Model;
 
 import android.app.Notification;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Deadline {
+public class Deadline implements Serializable {
 
     private String title, description, color;
     private Date date;
-    //private Notification notification;
     private int priority;
+    private int notification;
 
-    public Deadline(String _title, String _description, Date _date, int _priority, String _color){
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification){
         title = _title;
         description = _description;
         date = _date;
         priority = _priority;
-        color = _color;
+        notification = _notification;
     }
 
 
