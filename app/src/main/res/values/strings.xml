@@ -16,4 +16,10 @@
     <string name="title_activity_daily">DailyView</string>
     <string name="deadlines_title">Deadlines</string>
     <string name="calendar_button">Calendar</string>
+    <string name="toggle_switch">Daily</string>
+    <!-- Strings related to bottom navigation bar -->
+    <string name="list_button">List</string>
+    <string name="my_calendar_button">Calendar</string>
+    <string name="notification_button">Notifications</string>
+    <string name="profile_button">Profile</string>
 </resources>

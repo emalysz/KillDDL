@@ -13,12 +13,21 @@
 
         <Switch
             android:id="@+id/switch1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
+            android:layout_width="291dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:text="Switch" />
+            android:layout_weight="1"
+            android:text="@string/toggle_switch"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="7dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_event_note_black_24dp"
+            android:padding="15dp"
+            android:text="@string/calendar_button" />
 
     </LinearLayout>
 
@@ -38,13 +47,8 @@
             android:textAlignment="center"
             tools:text="@tools:sample/date/mmddyy" />
 
-        <Button
-            android:layout_width="364dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="20dp"
-            android:text="Button"
-            tools:text="@string/calendar_button" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -54,42 +58,25 @@
 
         <ListView
             android:layout_width="406dp"
-            android:layout_height="339dp"
+            android:layout_height="300dp"
             android:text="@+id/deadlineList" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/new_deadline_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:icon="@drawable/ic_add_black_24dp"
+            app:backgroundTint="@android:color/holo_blue_light" />
 
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_main" >
 
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="20dp"
-            android:text="Button">
 
-        </ImageButton>
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="20dp"
-            android:text="Button">
-
-        </ImageButton>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="true"
-            app:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@color/colorAccent" />
     </android.support.design.widget.BottomNavigationView>
+
 </LinearLayout>

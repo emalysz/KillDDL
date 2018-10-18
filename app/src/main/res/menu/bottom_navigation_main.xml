@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_list"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="@string/list_button"/>
+    <item android:id="@+id/action_calendar"
+        android:icon="@drawable/ic_query_builder_black_24dp"
+        android:title="@string/my_calendar_button"/>
+    <item android:id="@+id/action_alerts"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/notification_button"/>
+    <item android:id="@+id/action_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/profile_button"/>
+
+</menu>
