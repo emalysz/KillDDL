@@ -39,8 +39,8 @@ public class AddDeadlineActivity extends AppCompatActivity {
         addDeadline = (Button) findViewById(R.id.addDeadline);
         notification = (SeekBar)findViewById(R.id.notification);
         priority = (SeekBar)findViewById(R.id.priority);
-        calendarView = (CalendarView) findViewById(R.id.calendarView);;
-
+        calendarView = (CalendarView) findViewById(R.id.calendarView);
+        date = Calendar.getInstance().getTime();
 
         //calendar onchange
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -55,12 +55,12 @@ public class AddDeadlineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String _dlName = deadlineName.getText().toString();
-                String _dlDescription = addDeadline.getText().toString();
+                String _dlDescription = deadlineDescription.getText().toString();
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
 
                 Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify);
-
+              //  System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
                 Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
                 intent.putExtra("deadline", (Serializable) d );
                 startActivity(intent);
