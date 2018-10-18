@@ -12,4 +12,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <!-- Strings related to DailyView -->
+    <string name="title_activity_daily">DailyView</string>
+    <string name="deadlines_title">Deadlines</string>
+    <string name="calendar_button">Calendar</string>
 </resources>
