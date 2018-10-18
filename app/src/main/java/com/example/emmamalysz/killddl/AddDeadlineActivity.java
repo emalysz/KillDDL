@@ -7,10 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -27,7 +30,11 @@ public class AddDeadlineActivity extends AppCompatActivity {
     SeekBar notification;
     SeekBar priority;
     Date date;
+    Spinner spinner;
+    int color;
     private CalendarView calendarView;
+    private Object AdapterView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,28 @@ public class AddDeadlineActivity extends AppCompatActivity {
         priority = (SeekBar)findViewById(R.id.priority);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         date = Calendar.getInstance().getTime();
+        spinner = (Spinner) findViewById(R.id.color_spinner);
+        String[] colors={"Green","Blue","Red","Gray"};
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,colors);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(aa);
+        color = spinner.getSelectedItemPosition();
+        spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                color = spinner.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                color = spinner.getSelectedItemPosition();
+            }
+
+        });
+
+
 
         //calendar onchange
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -49,6 +78,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 date = new Date(year,month,dayOfMonth);
             }
         });
+        
 
         //listener for adding a deadline button
         addDeadline.setOnClickListener(new View.OnClickListener() {
@@ -70,3 +100,4 @@ public class AddDeadlineActivity extends AppCompatActivity {
         });
     }
 }
+
