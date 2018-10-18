@@ -20,5 +20,14 @@ public class Deadline {
         color = _color;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
+    public String toString() {
+        return this.title;
+    }
+
 
 }
