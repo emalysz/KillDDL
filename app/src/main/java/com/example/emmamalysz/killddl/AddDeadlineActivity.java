@@ -89,7 +89,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
 
-                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify);
+                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
               //  System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
                 Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
                 intent.putExtra("deadline", (Serializable) d );
