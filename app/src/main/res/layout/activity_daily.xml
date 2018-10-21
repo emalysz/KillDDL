@@ -6,28 +6,42 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="291dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="@string/toggle_switch"
-            android:textAlignment="center" />
+        <Button
+            android:id="@+id/monthly_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Monthly" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/daily_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="Daily" />
+
+        <Button
+            android:id="@+id/canlendar_button"
             android:layout_width="7dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/ic_event_note_black_24dp"
-            android:padding="15dp"
-            android:text="@string/calendar_button" />
+            android:padding="15dp" />
 
     </LinearLayout>
 
@@ -43,11 +57,8 @@
             android:textSize="25sp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="TextView"
             android:textAlignment="center"
             tools:text="@tools:sample/date/mmddyy" />
-
-
 
     </LinearLayout>
 
@@ -59,9 +70,10 @@
         <ListView
             android:layout_width="406dp"
             android:layout_height="300dp"
-            android:text="@+id/deadlineList" />
+            android:id="@+id/deadlineList" />
+
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/new_deadline_button"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -75,8 +87,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_navigation_main" >
-
-
     </android.support.design.widget.BottomNavigationView>
 
 </LinearLayout>

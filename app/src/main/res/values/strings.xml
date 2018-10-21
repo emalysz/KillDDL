@@ -22,4 +22,7 @@
     <string name="my_calendar_button">Calendar</string>
     <string name="notification_button">Notifications</string>
     <string name="profile_button">Profile</string>
+
+    <!-- Strings related to DeadlineView -->
+    <string name ="DeadlineView">DeadlineView</string>
 </resources>

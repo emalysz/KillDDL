@@ -3,9 +3,10 @@ package Model;
 
 import android.app.Notification;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Deadline {
+public class Deadline implements Serializable {
 
     private String title, description, color;
     private Date date;
@@ -20,5 +21,48 @@ public class Deadline {
         color = _color;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public String toString(){
+        return this.title + "\t" + this.date.toString();
+    }
 }
