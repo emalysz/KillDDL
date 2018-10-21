@@ -27,7 +27,11 @@ public class Deadline implements Serializable {
 
     @Override
     public String toString() {
-        return this.title;
+        return this.title + "\t" + this.date.toString();
+    }
+
+    public Date getDate() {
+        return this.date;
     }
 
 
