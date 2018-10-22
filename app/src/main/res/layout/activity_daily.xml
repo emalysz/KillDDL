@@ -78,8 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:icon="@drawable/ic_add_black_24dp"
-            app:backgroundTint="@android:color/holo_blue_light" />
+            android:src="@drawable/ic_add_black_24dp" />
 
     </LinearLayout>
 

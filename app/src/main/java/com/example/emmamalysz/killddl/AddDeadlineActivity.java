@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import Model.Deadline;
+import view.DailyView;
 
 public class AddDeadlineActivity extends AppCompatActivity {
     EditText deadlineName;
@@ -102,8 +103,8 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
                 System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.getMonth() + " " + date.getDate() +  " " + date.getYear() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
 
-                Intent intent = new Intent(AddDeadlineActivity.this, EditDeadlineActivity.class);
-                intent.putExtra("deadline", (Serializable) d);
+                Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);
+                intent.putExtra("new_deadline", (Serializable) d);
                 startActivity(intent);
                 /*
                 Intent intent = new Intent();

@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.emmamalysz.killddl.EditDeadlineActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
 
@@ -57,11 +58,19 @@ public class DeadlineView extends AppCompatActivity {
 
 
         final Button deleteButton = findViewById(R.id.delete_button);
-
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
                 intent.putExtra("delete", (Serializable) dl);
+                startActivity(intent);
+            }
+        });
+
+        final Button editButton = findViewById(R.id.edit_button);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditDeadlineActivity.class);
+                intent.putExtra("edit", (Serializable) dl);
                 startActivity(intent);
             }
         });

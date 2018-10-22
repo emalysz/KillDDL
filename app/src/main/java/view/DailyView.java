@@ -41,7 +41,7 @@ public class DailyView extends AppCompatActivity {
 //        }
 
         final Deadline deleteDeadline = (Deadline) getIntent().getSerializableExtra("delete");
-
+        final Deadline addedDeadline = (Deadline) getIntent().getSerializableExtra("new_deadline");
 
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
@@ -55,6 +55,7 @@ public class DailyView extends AppCompatActivity {
         };
 
         ddls = new ArrayList<>(Arrays.asList(deadlines));
+        ddls.add(addedDeadline);
         ddls.remove(deleteDeadline);
 
         final ArrayAdapter<Deadline> arrayAdapter = new ArrayAdapter<Deadline>(this, android.R.layout.simple_list_item_1, ddls);
