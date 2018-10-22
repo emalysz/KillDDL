@@ -48,7 +48,6 @@ public class KillDDLController {
         return killDDLController;
     }
 
-
     /**
      * Tentative member variables we will have, add more if needed
      */
@@ -59,8 +58,6 @@ public class KillDDLController {
 //    private DailyView dailyView;
 //    private DeadlineView deadlineView;
 //    private EditView editView;
-
-
 
 
     public List<Deadline> getDeadlines() {
