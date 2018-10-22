@@ -12,7 +12,7 @@ import Model.User;
 
 public class KillDDLController {
     private static KillDDLController killDDLController;
-    
+
 
 
 

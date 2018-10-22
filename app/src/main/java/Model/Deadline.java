@@ -10,22 +10,29 @@ import java.util.Date;
 
 public class Deadline implements Serializable {
 
-    private String title, description, color;
+    private String title, description;
     private Date date;
-    //private Notification notification;
     private int priority;
+    private int notification;
+    private int color;
 
-    public Deadline(String _title, String _description, Date _date, int _priority, String _color){
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
         title = _title;
         description = _description;
         date = _date;
         priority = _priority;
+        notification = _notification;
         color = _color;
     }
-
-    public String getTitle() {
-        return this.title;
+    public String getDescription(){
+        return description;
     }
+    public String getTitle(){
+        return title;
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -35,6 +42,21 @@ public class Deadline implements Serializable {
 
     public Date getDate() {
         return this.date;
+    }
+
+
+
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public int getNotification() {
+        return notification;
+    }
+
+    public int getColor() {
+        return color;
     }
 
 
