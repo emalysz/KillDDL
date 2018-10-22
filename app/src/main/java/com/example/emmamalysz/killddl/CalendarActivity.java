@@ -108,7 +108,9 @@ public class CalendarActivity extends AppCompatActivity {
         for (int i=0; i<allDeadlines.size(); i++) {
             Deadline d = allDeadlines.get(i);
             Log.d("TIME", Long.toString(d.getDate().getTime()));
-            Event e = new Event(colorMap.get(d.getColor()), d.getDate().getTime(), d.getTitle());
+            Calendar c = Calendar.getInstance();
+            c.setTime(d.getDate());
+            Event e = new Event(colorMap.get(d.getColor()), c.getTimeInMillis(), d.getTitle());
             calendarView.addEvent(e);
 
 
