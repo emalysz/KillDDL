@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,10 +74,15 @@ public class EditDeadlineActivity extends AppCompatActivity {
         spinner.setSelection(d.getColor());
         timePicker1.setHour(d.getDate().getHours());
         timePicker1.setMinute(d.getDate().getMinutes());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-      //  Date date = sdf.parse(d.getDate().toString());
-        //long startDate = date.getTime();
-        //calendarView.setDate(d.getDate());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            Date date = sdf.parse(d.getDate().getMonth() + 1 + "/" + d.getDate().getDate() +  "/" + d.getDate().getYear());
+            long startDate  = date.getTime();
+            calendarView.setDate(startDate);
+        } catch (ParseException e){
+
+        }
+
 
         spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
