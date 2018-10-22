@@ -110,7 +110,7 @@ public class SignupActivity extends LoginActivity{
             // perform the user login attempt.
             Log.d("checker", "else");
             mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d("checker", "uh");
@@ -118,7 +118,7 @@ public class SignupActivity extends LoginActivity{
                                 Log.d("checker", "successful??");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                Intent intent = new Intent(SignupActivity.this, CalendarActivity.class);
                                 startActivity(intent);
 //                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
 //                                killDDl.setCurrentUser(currentUser);
