@@ -126,7 +126,7 @@ public class SignupActivity extends LoginActivity{
                             } else {
                                 Log.d("checker", "other??");
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(SignupActivity.this, "Authentication failed.",
+                                Toast.makeText(SignupActivity.this, "Authentication failed. Username and password cannot be found.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
