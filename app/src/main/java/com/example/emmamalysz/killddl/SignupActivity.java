@@ -1,5 +1,6 @@
 package com.example.emmamalysz.killddl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -117,6 +118,8 @@ public class SignupActivity extends LoginActivity{
                                 Log.d("checker", "successful??");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                startActivity(intent);
 //                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
 //                                killDDl.setCurrentUser(currentUser);
 
