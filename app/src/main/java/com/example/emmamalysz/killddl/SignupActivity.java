@@ -19,6 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import Controller.KillDDLController;
 import Model.User;
 
 public class SignupActivity extends LoginActivity{
@@ -28,6 +29,7 @@ public class SignupActivity extends LoginActivity{
     private EditText mNameView;
     private EditText mPhonenumberView;
     private FirebaseAuth mAuth;
+    private KillDDLController killDDl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,18 +107,21 @@ public class SignupActivity extends LoginActivity{
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            Log.d("myTag", "else");
+            Log.d("checker", "else");
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d("checker", "uh");
                             if (task.isSuccessful()) {
-                                Log.d("myTag", "successful");
+                                Log.d("checker", "successful??");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
+//                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
+//                                killDDl.setCurrentUser(currentUser);
+
                             } else {
-                                Log.d("myTag", "other");
+                                Log.d("checker", "other??");
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(SignupActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
