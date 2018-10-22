@@ -111,9 +111,10 @@ public class KillDDLController {
 
 
     public void removeDeadline(Deadline deadline) {
-        List<Deadline> temp = currentUser.getDeadlines();
-        temp.remove(deadline);
-        currentUser.editDeadlines(temp);
+//        List<Deadline> temp = currentUser.getDeadlines();
+//        temp.remove(deadline);
+//        currentUser.editDeadlines(temp);
+        currentUser.removeDeadline(deadline);
     }
     public void addDeadline(Deadline deadline) {
          currentUser.addDeadline(deadline);

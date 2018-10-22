@@ -3,6 +3,7 @@ package view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -62,6 +63,7 @@ public class DeadlineView extends AppCompatActivity {
         final Button deleteButton = findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.e("DEADLINE TO REMOVE", dl.toString());
                 controller.removeDeadline(dl);
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
                 intent.putExtra("delete", (Serializable) dl);
