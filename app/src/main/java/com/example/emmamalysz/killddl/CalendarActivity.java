@@ -52,6 +52,8 @@ public class CalendarActivity extends AppCompatActivity {
     Map<Integer, Integer> colorMap;
     ArrayAdapter<Deadline> arrayAdapter;
     KillDDLController controller = KillDDLController.getInstance();
+    Date currDate;
+    Calendar curr;
 
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
@@ -61,7 +63,8 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
+        curr = Calendar.getInstance();
+        currDate = curr.getTime();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         monthAndYear = (TextView) findViewById(R.id.month);
@@ -92,6 +95,7 @@ public class CalendarActivity extends AppCompatActivity {
                // controller.openDailyView();
                 // change activity which is sent to DAILYVIEW
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                intent.putExtra("selectedDate", currDate);
                 // to retrieve: getSerializable extra
                 startActivity(intent);
                 return true;
@@ -139,6 +143,7 @@ public class CalendarActivity extends AppCompatActivity {
                 List<Deadline> dayDeadlines = controller.getDayDeadlines(dateClicked);
                 deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, dayDeadlines));
                 deadlineTitle.setText(dateFormatDay.format(dateClicked));
+                currDate = dateClicked;
             }
 
             @Override
@@ -147,6 +152,7 @@ public class CalendarActivity extends AppCompatActivity {
                 List<Deadline> monthDeadlines = controller.getMonthlyDeadlines(firstDayOfNewMonth);
                 deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, monthDeadlines));
                 deadlineTitle.setText("This Month");
+                currDate = curr.getTime();
 
             }
 

@@ -20,6 +20,7 @@ import com.example.emmamalysz.killddl.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -32,11 +33,17 @@ public class DailyView extends AppCompatActivity {
     List<Deadline> ddls;
     ListView deadlineList;
     KillDDLController controller = KillDDLController.getInstance();
+    Date selectedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
+        selectedDate = (Date)getIntent().getSerializableExtra("selectedDate");
+        if (selectedDate == null) {
+            Calendar c = Calendar.getInstance();
+            selectedDate = c.getTime();
+        }
 
 //        lv = (ListView) findViewById(R.id.deadline_list);
 //        lv.setOnDragListener(new View.OnDragListener() {
@@ -53,7 +60,7 @@ public class DailyView extends AppCompatActivity {
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
         deadlineList = (ListView) findViewById(R.id.deadline_list);
-        List<Deadline> ddls = controller.getDeadlines();
+        List<Deadline> ddls = controller.getDayDeadlines(selectedDate);
 
 //        if (controller.getDeadlines() != null) {
 //            ddls = controller.getDeadlines();
