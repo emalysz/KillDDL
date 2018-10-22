@@ -10,52 +10,63 @@
     tools:context=".CalendarActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="KillDDl"
-        android:layout_marginLeft="160dp"
+        android:gravity="center"
         android:textColor="#FFF"
         android:textSize="30dp"/>
 
-    <Switch
-        android:id="@+id/simpleSwitch"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="180dp"
-        android:checked="true"
-        android:textOff="No"
-        android:textOn="Yes"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/monthlyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Monthly"
+            android:layout_margin="0dp"
+            />
+        <Button
+            android:id="@+id/dailyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Daily"
+            android:layout_margin="0dp"/>
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="Month"
-        android:layout_marginLeft="170dp"
-        android:textSize="23dp"
+        android:textSize="20dp"
+        android:background="#93dadf"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:textColor="#FFF"
         android:id="@+id/month"/>
 
 
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:background="@drawable/bg_calen"
-        android:layout_marginLeft="50dp"
-        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content">
 
-        <!--<CalendarView-->
-            <!--android:id="@+id/calendarView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="300dp">-->
 
-        <!--</CalendarView>-->
         <com.github.sundeepk.compactcalendarview.CompactCalendarView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/calendarView"
             android:layout_width="fill_parent"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
-            android:layout_height="250dp"
+            android:layout_height="220dp"
             app:compactCalendarTargetHeight="250dp"
             app:compactCalendarTextSize="12sp"
             app:compactCalendarBackgroundColor="#93dadf"
@@ -68,34 +79,29 @@
 
     </LinearLayout>
 
-    <!--<Button-->
-    <!--android:layout_marginTop="24dp"-->
-    <!--android:layout_marginLeft="120dp"-->
-    <!--android:text="Go To Date"-->
-    <!--android:paddingLeft="20dp"-->
-    <!--android:paddingRight="20dp"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content" />-->
     <LinearLayout
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="270dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+
         android:background="#FFF"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="This Month"
+            android:gravity="center"
             android:id="@+id/deadlineTitle"
-            android:textSize="20dp"
-            android:layout_marginLeft="140dp"/>
+            android:textSize="20dp" />
         <ListView
             android:id="@+id/deadlineList"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginTop="5dp"
+
 
             />
 

@@ -4,6 +4,8 @@ package Model;
 import android.app.Notification;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Deadline implements Serializable {
@@ -27,7 +29,8 @@ public class Deadline implements Serializable {
 
     @Override
     public String toString() {
-        return this.title + "\t" + this.date.toString();
+        SimpleDateFormat parseFormat = new SimpleDateFormat("d MMM - K:mm a");
+        return this.title + "\t\t -- \t\t" + parseFormat.format(this.date);
     }
 
     public Date getDate() {

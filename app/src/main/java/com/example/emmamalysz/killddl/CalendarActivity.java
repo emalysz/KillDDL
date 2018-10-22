@@ -9,9 +9,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -36,6 +38,8 @@ public class CalendarActivity extends AppCompatActivity {
     CompactCalendarView calendarView;
     TextView monthAndYear;
     ListView deadlineList;
+    Button monthlyButton;
+    Button dailyButton;
     List<Deadline> ddls;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatDay = new SimpleDateFormat("d MMMM", Locale.getDefault());
@@ -49,6 +53,28 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView.setUseThreeLetterAbbreviation(true);
         calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
         final TextView deadlineTitle = (TextView)findViewById(R.id.deadlineTitle);
+
+        monthlyButton = (Button)findViewById(R.id.monthlyButton);
+        dailyButton = (Button) findViewById(R.id.dailyButton);
+        monthlyButton.setPressed(true);
+        monthlyButton.setHighlightColor(Color.BLUE);
+
+        dailyButton.setPressed(false);
+
+        dailyButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // change to daily view
+               // controller.openDailyView();
+                // change activity which is sent to DAILYVIEW
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                // to retrieve: getSerializable extra
+                startActivity(intent);
+                return true;
+
+            }
+        });
+
 
         deadlineList = (ListView) findViewById(R.id.deadlineList);
         Calendar cal1 = Calendar.getInstance();
@@ -74,10 +100,6 @@ public class CalendarActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, ddls);
         deadlineList.setAdapter(arrayAdapter);
 
-        Switch simpleSwitch = (Switch) findViewById(R.id.simpleSwitch); // initiate Switch
-
-        simpleSwitch.setTextOn("On"); // displayed text of the Switch whenever it is in checked or on state
-        simpleSwitch.setTextOff("Off");
 
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -94,18 +116,6 @@ public class CalendarActivity extends AppCompatActivity {
 
         });
 
-//
-//        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-//                String date = (dayOfMonth) + " " + (month + 1) + " " + (year);
-//
-//                Date dateToSend = new Date(year, month, dayOfMonth);
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                intent.putExtra("DATE", dateToSend);
-//                startActivity(intent);
-//            }
-//        });
 
         deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
