@@ -13,14 +13,15 @@ public class Deadline implements Serializable {
     private int priority;
     private int notification;
     private int color;
-
-    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
+    private int frequency;
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color, int _frequency){
         title = _title;
         description = _description;
         date = _date;
         priority = _priority;
         notification = _notification;
         color = _color;
+        frequency = _frequency;
     }
     public String getDescription(){
         return description;
@@ -44,5 +45,7 @@ public class Deadline implements Serializable {
     public int getColor() {
         return color;
     }
-
+    public int getFrequency(){
+        return frequency;
+    }
 }

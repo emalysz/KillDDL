@@ -32,6 +32,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
     Button addDeadline;
     SeekBar notification;
     SeekBar priority;
+    SeekBar frequency;
     Date date;
     Spinner spinner;
     int color;
@@ -43,16 +44,13 @@ public class EditDeadlineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_deadline);
 
-
-
-
-
         //initialize widgets
         deadlineName = (EditText) findViewById(R.id.deadlineName);
         deadlineDescription = (EditText) findViewById(R.id.deadlineDescription);
         addDeadline = (Button) findViewById(R.id.addDeadline);
         notification = (SeekBar)findViewById(R.id.notification);
         priority = (SeekBar)findViewById(R.id.priority);
+        frequency = (SeekBar)findViewById(R.id.frequency);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         date = Calendar.getInstance().getTime();
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
@@ -72,6 +70,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
         notification.setProgress(d.getNotification());
         priority.setProgress(d.getPriority());
         spinner.setSelection(d.getColor());
+        frequency.setProgress(d.getFrequency());
         timePicker1.setHour(d.getDate().getHours());
         timePicker1.setMinute(d.getDate().getMinutes());
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -118,11 +117,12 @@ public class EditDeadlineActivity extends AppCompatActivity {
                 String _dlDescription = deadlineDescription.getText().toString();
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
+                int _frequency = frequency.getProgress();
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
+                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
                 System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
                 // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
                 // intent.putExtra("deadline", (Serializable) d);
