@@ -1,5 +1,7 @@
 package Model;
 import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String name;
     private String email;
@@ -40,5 +42,9 @@ public class User {
         Boolean isDeadline = false;
 
         return isDeadline;
+    }
+
+    public List<Deadline> getDeadlines() {
+        return this.deadlines;
     }
 }

@@ -96,11 +96,13 @@
             android:gravity="center"
             android:id="@+id/deadlineTitle"
             android:textSize="20dp" />
+
+
         <ListView
-            android:id="@+id/deadlineList"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="5dp"
+                    android:id="@+id/deadlineList"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+             android:layout_marginTop="5dp"
 
 
             />

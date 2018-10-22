@@ -7,13 +7,41 @@ import android.widget.AdapterView;
 import com.example.emmamalysz.killddl.CalendarActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
 
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import Model.Deadline;
 import Model.User;
 
 public class KillDDLController {
+
     private static KillDDLController killDDLController;
 
+    public KillDDLController() {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        Calendar cal3 = Calendar.getInstance();
+        cal1.set(2018, 9, 10);
+        cal2.set(2018, 9, 15);
+        cal3.set(2018,8,20);
+        this.currentUser = new User("Caroline", "a@usc.edu", "hi",
+                84727172);
+        this.currentUser.addDeadline(new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 0));
+        this.currentUser.addDeadline(new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1));
+        this.currentUser.addDeadline( new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 2));
 
+    }
+
+    public static KillDDLController getInstance() {
+        if (killDDLController == null) {
+            killDDLController = new KillDDLController();
+        }
+        return killDDLController;
+    }
 
 
     /**
@@ -28,6 +56,35 @@ public class KillDDLController {
 //    private EditView editView;
 
 
+    public List<Deadline> getDeadlines() {
+        Collections.sort(currentUser.getDeadlines());
+        return currentUser.getDeadlines();
+    }
+    public List<Deadline> getMonthlyDeadlines(Date date) {
+        List<Deadline> userDeadlines = currentUser.getDeadlines();
+        List<Deadline> monthDeadlines = new ArrayList<Deadline>();
+        for (int i=0; i<userDeadlines.size(); i++) {
+            if (userDeadlines.get(i).getDate().getMonth() == date.getMonth()) {
+                monthDeadlines.add(userDeadlines.get(i));
+            }
+        }
+        Collections.sort(monthDeadlines);
+        return monthDeadlines;
+    }
+
+    public List<Deadline> getDayDeadlines(Date date) {
+        List<Deadline> userDeadlines = currentUser.getDeadlines();
+        List<Deadline> dayDeadlines = new ArrayList<Deadline>();
+        for (int i=0; i<userDeadlines.size(); i++) {
+            if (userDeadlines.get(i).getDate().getMonth() == date.getMonth()) {
+                if (userDeadlines.get(i).getDate().getDay() == date.getDay()) {
+                    dayDeadlines.add(userDeadlines.get(i));
+                }
+            }
+        }
+        Collections.sort(dayDeadlines);
+        return dayDeadlines;
+    }
 
 
     /**

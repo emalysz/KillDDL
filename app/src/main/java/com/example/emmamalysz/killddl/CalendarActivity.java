@@ -28,11 +28,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import Controller.KillDDLController;
+import Model.CustomListAdapter;
 import Model.Deadline;
+import Model.User;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -42,6 +46,9 @@ public class CalendarActivity extends AppCompatActivity {
     Button monthlyButton;
     Button dailyButton;
     List<Deadline> ddls;
+    Map<Integer, Integer> colorMap;
+    ArrayAdapter<Deadline> arrayAdapter;
+    KillDDLController controller = KillDDLController.getInstance();
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatDay = new SimpleDateFormat("d MMMM", Locale.getDefault());
@@ -58,6 +65,13 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView.setUseThreeLetterAbbreviation(true);
         calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
         final TextView deadlineTitle = (TextView)findViewById(R.id.deadlineTitle);
+
+        colorMap = new HashMap<Integer, Integer>();
+        colorMap.put(0, Color.GREEN);
+        colorMap.put(1, Color.RED);
+        colorMap.put(2, Color.BLUE);
+        colorMap.put(3, Color.GRAY);
+
 
         monthlyButton = (Button)findViewById(R.id.monthlyButton);
         dailyButton = (Button) findViewById(R.id.dailyButton);
@@ -80,41 +94,43 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-
-        deadlineList = (ListView) findViewById(R.id.deadlineList);
         Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
-        Calendar cal3 = Calendar.getInstance();
-        cal1.set(2018, 9, 10);
-        cal2.set(2018, 9, 15);
-        cal3.set(2018,8,20);
-        monthAndYear.setText(new SimpleDateFormat("MMMM - yyyy").format(cal1.getTime()));
-        Deadline[] deadlines = new Deadline[] {
-                new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 1),
-                new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1),
-                new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 1)
-        };
+        ddls = controller.getMonthlyDeadlines(cal1.getTime());
+        deadlineList = (ListView) findViewById(R.id.deadlineList);
 
-        for (int i=0; i<deadlines.length; i++) {
-            Log.d("TIME", Long.toString(deadlines[i].getDate().getTime()));
-            Event e = new Event(Color.RED, deadlines[i].getDate().getTime(), deadlines[i].getTitle());
+
+        monthAndYear.setText(new SimpleDateFormat("MMMM - yyyy").format(cal1.getTime()));
+        List<Deadline> allDeadlines = controller.getDeadlines();
+
+        for (int i=0; i<allDeadlines.size(); i++) {
+            Deadline d = allDeadlines.get(i);
+            Log.d("TIME", Long.toString(d.getDate().getTime()));
+            Event e = new Event(colorMap.get(d.getColor()), d.getDate().getTime(), d.getTitle());
             calendarView.addEvent(e);
+
+
         }
-        ddls = new ArrayList<>(Arrays.asList(deadlines));
-        final ArrayAdapter<Deadline> arrayAdapter = new ArrayAdapter<Deadline>(this,
-                android.R.layout.simple_list_item_1, ddls);
+
+        arrayAdapter = new CustomListAdapter(CalendarActivity.this ,
+                R.layout.custom_list , ddls);
+
+
         deadlineList.setAdapter(arrayAdapter);
 
 
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
+                List<Deadline> dayDeadlines = controller.getDayDeadlines(dateClicked);
+                deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, dayDeadlines));
                 deadlineTitle.setText(dateFormatDay.format(dateClicked));
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 monthAndYear.setText(dateFormatMonth.format(firstDayOfNewMonth));
+                List<Deadline> monthDeadlines = controller.getMonthlyDeadlines(firstDayOfNewMonth);
+                deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, monthDeadlines));
                 deadlineTitle.setText("This Month");
 
             }

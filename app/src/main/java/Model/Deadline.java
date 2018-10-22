@@ -6,9 +6,10 @@ import android.app.Notification;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
-public class Deadline implements Serializable {
+public class Deadline implements Serializable, Comparable<Deadline> {
 
     private String title, description;
     private Date date;
@@ -16,6 +17,10 @@ public class Deadline implements Serializable {
     private int notification;
     private int color;
 
+    @Override
+    public int compareTo(Deadline other){
+        return date.compareTo(other.getDate());
+    }
     public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
         title = _title;
         description = _description;
@@ -32,12 +37,10 @@ public class Deadline implements Serializable {
     }
 
 
-
-
     @Override
     public String toString() {
-        SimpleDateFormat parseFormat = new SimpleDateFormat("d MMM - K:mm a");
-        return this.title + "\t\t -- \t\t" + parseFormat.format(this.date);
+        SimpleDateFormat parseFormat = new SimpleDateFormat("d MMM K:mm a");
+        return this.title + "- \t\t" + parseFormat.format(this.date);
     }
 
     public Date getDate() {
