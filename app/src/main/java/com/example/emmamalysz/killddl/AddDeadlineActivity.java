@@ -96,11 +96,14 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 date.setMinutes(min);
                 Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
                 System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-                Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
+                // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
+                // intent.putExtra("deadline", (Serializable) d);
+                // startActivity(intent);
+
+                Intent intent = new Intent();
                 intent.putExtra("deadline", (Serializable) d );
-                startActivity(intent);
-                //setResult(Activity.RESULT_OK);
-               // finish();
+                setResult(Activity.RESULT_OK, intent);
+                finish();
 
             }
         });
