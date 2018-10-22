@@ -22,6 +22,27 @@ public class Deadline implements Serializable {
         notification = _notification;
         color = _color;
     }
+    public String getDescription(){
+        return description;
+    }
+    public String getTitle(){
+        return title;
+    }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public int getNotification() {
+        return notification;
+    }
+
+    public int getColor() {
+        return color;
+    }
 
 }
