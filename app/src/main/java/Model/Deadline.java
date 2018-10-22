@@ -14,8 +14,9 @@ public class Deadline implements Serializable {
     private Boolean isComplete;
     private int notification;
     private int color;
+    private int frequency;
 
-    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color, int _frequency){
         title = _title;
         description = _description;
         date = _date;
@@ -24,6 +25,7 @@ public class Deadline implements Serializable {
         color = _color;
         isComplete = false;
 
+        frequency = _frequency;
     }
 
     public String getTitle(){
@@ -79,7 +81,11 @@ public class Deadline implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.title + "\t" + this.date.toString();
+
+    }
+    public int getFrequency(){
+        return frequency;
     }
 }

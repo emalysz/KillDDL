@@ -31,6 +31,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
     Button addDeadline;
     SeekBar notification;
     SeekBar priority;
+    SeekBar frequency;
     Date date;
     Spinner spinner;
     int color;
@@ -52,6 +53,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
         addDeadline = (Button) findViewById(R.id.addDeadline);
         notification = (SeekBar)findViewById(R.id.notification);
         priority = (SeekBar)findViewById(R.id.priority);
+        frequency = (SeekBar)findViewById(R.id.frequency);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         date = Calendar.getInstance().getTime();
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
@@ -96,11 +98,12 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 String _dlDescription = deadlineDescription.getText().toString();
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
+                int _frequency = frequency.getProgress();
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
+                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
                 System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.getMonth() + " " + date.getDate() +  " " + date.getYear() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
 
                 Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);

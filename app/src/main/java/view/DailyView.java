@@ -49,9 +49,9 @@ public class DailyView extends AppCompatActivity {
 
         Deadline [] deadlines = new Deadline[]{
                new Deadline("Meet Laura at the village", "Discuss what just happened" +
-                "on this week's episode of Survivor", new Date(2018-10-30),1, 1, 1),
+                "on this week's episode of Survivor", new Date(2018-10-30),1, 1, 1, 0),
                 new Deadline("Meet Stephannie at the village", "Discuss what just happened" +
-               "on this week's episode of Survivor", new Date(2018-10-31),2, 0, 4)
+               "on this week's episode of Survivor", new Date(2018-10-31),2, 0, 4, 0)
         };
 
         ddls = new ArrayList<>(Arrays.asList(deadlines));
