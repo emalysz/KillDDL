@@ -1,5 +1,10 @@
 package Controller;
 
+import java.util.ArrayList;
+
+import Model.Deadline;
+import Model.User;
+
 public class KillDDLController {
 
     /**
@@ -12,11 +17,31 @@ public class KillDDLController {
 //    private DailyView dailyView;
 //    private DeadlineView deadlineView;
 //    private EditView editView;
+    private User mCurrentUser;
+
+    private static KillDDLController killDDLController;
+
+    private KillDDLController() {}
+
+    private static KillDDLController getInstance() {
+        if (killDDLController == null) {
+            killDDLController = new KillDDLController();
+        }
+        return killDDLController;
+    }
 
     /**
      * Tentative classes for the controller, add more if needed
      *
      */
+
+     public void setCurrentUser(User aCurrentUser) {
+         mCurrentUser = aCurrentUser;
+     }
+
+//     public ArrayList<Deadline> getDeadlines() {
+//
+//     }
 
 //    public void removeDeadline(Deadline deadline) {
 //
