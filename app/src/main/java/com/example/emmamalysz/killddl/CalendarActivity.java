@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import Controller.KillDDLController;
 import Model.Deadline;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -41,11 +42,14 @@ public class CalendarActivity extends AppCompatActivity {
     Button monthlyButton;
     Button dailyButton;
     List<Deadline> ddls;
+    KillDDLController killDDLController;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatDay = new SimpleDateFormat("d MMMM", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        killDDLController = KillDDLController.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         monthAndYear = (TextView) findViewById(R.id.month);
@@ -123,6 +127,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                 Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
                 // change activity which is sent to DEADLINEVIEW
+
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.putExtra("DEADLINE", selectedDeadline);
                 // to retrieve: getSerializable extra
