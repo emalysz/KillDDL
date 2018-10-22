@@ -19,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import Model.User;
+
 public class SignupActivity extends LoginActivity{
 
     private AutoCompleteTextView mEmailView;
@@ -56,10 +58,10 @@ public class SignupActivity extends LoginActivity{
         mNameView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-        String name = mNameView.getText().toString();
-        String phoneNumber = mPhonenumberView.toString();
+        final String email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
+        final String name = mNameView.getText().toString();
+        final String phoneNumber = mPhonenumberView.toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -112,6 +114,7 @@ public class SignupActivity extends LoginActivity{
                                 Log.d("myTag", "successful");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
                             } else {
                                 Log.d("myTag", "other");
                                 // If sign in fails, display a message to the user.
