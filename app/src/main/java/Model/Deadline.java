@@ -8,17 +8,19 @@ import java.util.Date;
 
 public class Deadline implements Serializable {
 
-    private String title, description, color;
+    private String title, description;
     private Date date;
-    //private Notification notification;
     private int priority;
     private Boolean isComplete;
+    private int notification;
+    private int color;
 
-    public Deadline(String _title, String _description, Date _date, int _priority, String _color){
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
         title = _title;
         description = _description;
         date = _date;
         priority = _priority;
+        notification = _notification;
         color = _color;
         isComplete = false;
 
@@ -40,11 +42,11 @@ public class Deadline implements Serializable {
         this.description = description;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
