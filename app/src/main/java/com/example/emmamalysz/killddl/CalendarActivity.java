@@ -42,14 +42,15 @@ public class CalendarActivity extends AppCompatActivity {
     Button monthlyButton;
     Button dailyButton;
     List<Deadline> ddls;
-    KillDDLController killDDLController;
+
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatDay = new SimpleDateFormat("d MMMM", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        killDDLController = KillDDLController.getInstance();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         monthAndYear = (TextView) findViewById(R.id.month);
@@ -71,7 +72,7 @@ public class CalendarActivity extends AppCompatActivity {
                 // change to daily view
                // controller.openDailyView();
                 // change activity which is sent to DAILYVIEW
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddDeadlineActivity.class);
                 // to retrieve: getSerializable extra
                 startActivity(intent);
                 return true;
@@ -89,9 +90,9 @@ public class CalendarActivity extends AppCompatActivity {
         cal3.set(2018,8,20);
         monthAndYear.setText(new SimpleDateFormat("MMMM - yyyy").format(cal1.getTime()));
         Deadline[] deadlines = new Deadline[] {
-                new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, "RED"),
-                new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, "GREEN"),
-                new Deadline("103 PA", "code in c++", cal3.getTime(), 1, "ORANGE")
+                new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 1),
+                new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1),
+                new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 1)
         };
 
         for (int i=0; i<deadlines.length; i++) {
