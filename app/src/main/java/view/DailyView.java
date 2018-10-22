@@ -18,6 +18,7 @@ import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -45,17 +46,11 @@ public class DailyView extends AppCompatActivity {
             selectedDate = c.getTime();
         }
 
-//        lv = (ListView) findViewById(R.id.deadline_list);
-//        lv.setOnDragListener(new View.OnDragListener() {
-//
-//        }
+        SimpleDateFormat sdf = new SimpleDateFormat("E, MMM dd, yyyy");
 
-        //Deadline deleteDeadline = (Deadline) getIntent().getSerializableExtra("delete");
-        //final Deadline addedDeadline = (Deadline) getIntent().getSerializableExtra("new_deadline");
-
-//        if (controller.getDeadlines() != null) {
-//            controller.removeDeadline(deleteDeadline);
-//        }
+        final TextView date = findViewById(R.id.date_title);
+        String newDate = sdf.format(selectedDate);
+        date.setText(newDate);
 
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
@@ -65,9 +60,6 @@ public class DailyView extends AppCompatActivity {
 //        if (controller.getDeadlines() != null) {
 //            ddls = controller.getDeadlines();
 //        }
-
-//       ddls.add(addedDeadline);
-//       ddls.remove(deleteDeadline);
 
         ArrayAdapter<Deadline> arrayAdapter = new CustomListAdapter(DailyView.this ,
                 R.layout.custom_list , ddls);

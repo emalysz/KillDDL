@@ -18,6 +18,7 @@ import com.example.emmamalysz.killddl.R;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,12 @@ public class DeadlineView extends AppCompatActivity {
 
         final TextView title = findViewById(R.id.title);
         title.setText(dl.getTitle());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d 'at' hh:mm aaa");
         final TextView date = findViewById(R.id.date);
-        date.setText(dl.getDate().toString());
+        String newDate = sdf.format(dl.getDate());
+        date.setText(newDate);
+
 
         final TextView description = findViewById(R.id.description);
         description.setText(dl.getDescription());
@@ -50,6 +55,7 @@ public class DeadlineView extends AppCompatActivity {
 //        if(dl.isCompleted() == true) {
 //            completed.setText("Completed");
 //        }
+
         final Button completedButton = findViewById(R.id.completed_button);
         completedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
