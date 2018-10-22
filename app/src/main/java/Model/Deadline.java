@@ -12,6 +12,7 @@ public class Deadline implements Serializable {
     private Date date;
     //private Notification notification;
     private int priority;
+    private Boolean isComplete;
 
     public Deadline(String _title, String _description, Date _date, int _priority, String _color){
         title = _title;
@@ -19,6 +20,8 @@ public class Deadline implements Serializable {
         date = _date;
         priority = _priority;
         color = _color;
+        isComplete = false;
+
     }
 
     public String getTitle() {
@@ -59,6 +62,14 @@ public class Deadline implements Serializable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public Boolean isCompleted() {
+        return isComplete;
+    }
+
+    public void setIsComplete(Boolean isComplete) {
+        this.isComplete = isComplete;
     }
 
     @Override

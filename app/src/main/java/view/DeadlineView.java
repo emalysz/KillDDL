@@ -26,12 +26,13 @@ import static android.view.View.*;
 
 public class DeadlineView extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deadline);
 
-        Deadline dl = (Deadline) getIntent().getSerializableExtra("Deadline");
+        final Deadline dl = (Deadline) getIntent().getSerializableExtra("Deadline");
 
         final TextView title = findViewById(R.id.title);
         title.setText(dl.getTitle());
@@ -41,16 +42,37 @@ public class DeadlineView extends AppCompatActivity {
         final TextView description = findViewById(R.id.description);
         description.setText(dl.getDescription());
 
+//        final TextView completed = findViewById(R.id.complete_button);
+//        if(dl.isCompleted() == true) {
+//            completed.setText("Completed");
+//        }
+        final Button completedButton = findViewById(R.id.completed_button);
+        completedButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dl.setIsComplete(true);
+                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                startActivity(intent);
+            }
+        });
+
+
+        final Button deleteButton = findViewById(R.id.delete_button);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                intent.putExtra("delete", (Serializable) dl);
+                startActivity(intent);
+            }
+        });
+
         final Button backButton = findViewById(R.id.back_button);
-
-
-
-       backButton.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-               Intent intent = new Intent(getApplicationContext(), DailyView.class);
-               startActivity(intent);
-           }
-       });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

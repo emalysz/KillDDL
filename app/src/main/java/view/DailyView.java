@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
@@ -24,19 +25,27 @@ import Model.Deadline;
 public class DailyView extends AppCompatActivity {
 
     List<Deadline> ddls;
-    //List<String> ddls;
     ListView deadlineList;
+    ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
 
+//        lv = (ListView) findViewById(R.id.deadline_list);
+//        lv.setOnDragListener(new View.OnDragListener() {
+//        @Override
+//
+//        }
+//    }) {;
+
+        final Deadline deleteDeadline = (Deadline) getIntent().getSerializableExtra("delete");
+
         final Button addButton = findViewById(R.id.add_button);
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
-
-        deadlineList = (ListView) findViewById(R.id.deadlineList);
+        deadlineList = (ListView) findViewById(R.id.deadline_list);
 
         Deadline [] deadlines = new Deadline[]{
                new Deadline("Meet Laura at the village", "Discuss what just happened" +
@@ -45,10 +54,9 @@ public class DailyView extends AppCompatActivity {
                "on this week's episode of Survivor", new Date(2018-10-31),2, "blue")
         };
 
-
-
         ddls = new ArrayList<>(Arrays.asList(deadlines));
-      //  final ArrayAdapter<Deadline> arrayAdapter = new ArrayAdapter<Deadline>(this, android.R.layout.simple_list_item_1, ddls);
+        ddls.remove(deleteDeadline);
+
         final ArrayAdapter<Deadline> arrayAdapter = new ArrayAdapter<Deadline>(this, android.R.layout.simple_list_item_1, ddls);
         deadlineList.setAdapter(arrayAdapter);
 
@@ -59,9 +67,9 @@ public class DailyView extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
                 intent.putExtra("Deadline", (Serializable) selectedDeadline);
                 startActivity(intent);
-
             }
         });
+
 
 //        addButton.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
