@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import Model.Deadline;
 import Model.User;
@@ -21,9 +22,15 @@ public class KillDDLController {
 
     private static KillDDLController killDDLController;
 
-    private KillDDLController() {}
+    private KillDDLController() {
 
-    private static KillDDLController getInstance() {
+//        User user = new User("test", "test@gmail.com", "tester123", 123);
+//        setCurrentUser(user);
+//        mCurrentUser.addDeadline(new Deadline("test", "tester", new Date("2018-10-18"),
+//                0,0,0,0));
+    }
+
+    public static KillDDLController getInstance() {
         if (killDDLController == null) {
             killDDLController = new KillDDLController();
         }
@@ -39,13 +46,15 @@ public class KillDDLController {
          mCurrentUser = aCurrentUser;
      }
 
-//     public ArrayList<Deadline> getDeadlines() {
-//
-//     }
+     public ArrayList<Deadline> getDeadlines() {
+         return mCurrentUser.getDeadlines();
+     }
 
-//    public void removeDeadline(Deadline deadline) {
-//
-//    }
+    public void removeDeadline(Deadline deadline) {
+        ArrayList<Deadline> temp = mCurrentUser.getDeadlines();
+        temp.remove(deadline);
+        mCurrentUser.editDeadlines(temp);
+    }
 //
 //    public void addDeadline(Deadline deadline) {
 //

@@ -12,7 +12,6 @@ public class User {
         password = _password;
         email = _email;
         phoneNumber = _phoneNumber;
-
         deadlines = new ArrayList<Deadline>();
     }
 
@@ -32,13 +31,17 @@ public class User {
         deadlines.remove(index);
     }
 
-    public void editDeadline(Deadline d){
-
+    public void editDeadlines(ArrayList<Deadline> _deadlines){
+        deadlines = _deadlines;
     }
 
     public Boolean deadlineExists(Deadline d){
         Boolean isDeadline = false;
 
         return isDeadline;
+    }
+
+    public ArrayList<Deadline> getDeadlines() {
+        return deadlines;
     }
 }

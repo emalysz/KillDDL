@@ -27,7 +27,6 @@ import static android.view.View.*;
 
 public class DeadlineView extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +81,9 @@ public class DeadlineView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
     }
 
 

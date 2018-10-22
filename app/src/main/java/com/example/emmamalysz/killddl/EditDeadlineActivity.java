@@ -25,6 +25,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import Model.Deadline;
+import view.DailyView;
+import view.DeadlineView;
 
 public class EditDeadlineActivity extends AppCompatActivity {
     EditText deadlineName;
@@ -64,7 +66,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
 
         //change values
         Intent intent = getIntent();
-        Deadline d = (Deadline) intent.getSerializableExtra("deadline");
+        Deadline d = (Deadline) intent.getSerializableExtra("edit");
         deadlineName.setText(d.getTitle());
         deadlineDescription.setText(d.getDescription());
         notification.setProgress(d.getNotification());
@@ -128,10 +130,9 @@ public class EditDeadlineActivity extends AppCompatActivity {
                 // intent.putExtra("deadline", (Serializable) d);
                 // startActivity(intent);
 
-                Intent intent = new Intent();
-                intent.putExtra("deadline", (Serializable) d );
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+                intent.putExtra("Deadline", (Serializable) d );
+                startActivity(intent);
 
             }
         });

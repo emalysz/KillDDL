@@ -22,13 +22,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import Controller.KillDDLController;
 import Model.Deadline;
 
 public class DailyView extends AppCompatActivity {
 
     List<Deadline> ddls;
     ListView deadlineList;
-    ListView lv;
+    KillDDLController controller = KillDDLController.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,12 @@ public class DailyView extends AppCompatActivity {
 //
 //        }
 
-        final Deadline deleteDeadline = (Deadline) getIntent().getSerializableExtra("delete");
-        final Deadline addedDeadline = (Deadline) getIntent().getSerializableExtra("new_deadline");
+        //Deadline deleteDeadline = (Deadline) getIntent().getSerializableExtra("delete");
+        //final Deadline addedDeadline = (Deadline) getIntent().getSerializableExtra("new_deadline");
+
+//        if (controller.getDeadlines() != null) {
+//            controller.removeDeadline(deleteDeadline);
+//        }
 
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
@@ -55,8 +60,12 @@ public class DailyView extends AppCompatActivity {
         };
 
         ddls = new ArrayList<>(Arrays.asList(deadlines));
-        ddls.add(addedDeadline);
-        ddls.remove(deleteDeadline);
+//        if (controller.getDeadlines() != null) {
+//            ddls = controller.getDeadlines();
+//        }
+
+//       ddls.add(addedDeadline);
+//       ddls.remove(deleteDeadline);
 
         final ArrayAdapter<Deadline> arrayAdapter = new ArrayAdapter<Deadline>(this, android.R.layout.simple_list_item_1, ddls);
         deadlineList.setAdapter(arrayAdapter);
