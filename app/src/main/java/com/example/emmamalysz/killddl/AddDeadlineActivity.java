@@ -40,6 +40,11 @@ public class AddDeadlineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_deadline);
+
+
+
+
+
         //initialize widgets
         deadlineName = (EditText) findViewById(R.id.deadlineName);
         deadlineDescription = (EditText) findViewById(R.id.deadlineDescription);
@@ -95,15 +100,17 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 date.setHours(hour);
                 date.setMinutes(min);
                 Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
-                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-                // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
-                // intent.putExtra("deadline", (Serializable) d);
-                // startActivity(intent);
+                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.getMonth() + " " + date.getDate() +  " " + date.getYear() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
 
+                Intent intent = new Intent(AddDeadlineActivity.this, EditDeadlineActivity.class);
+                intent.putExtra("deadline", (Serializable) d);
+                startActivity(intent);
+                /*
                 Intent intent = new Intent();
                 intent.putExtra("deadline", (Serializable) d );
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+                */
 
             }
         });
