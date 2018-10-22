@@ -53,6 +53,7 @@ public class CalendarActivity extends AppCompatActivity {
     ArrayAdapter<Deadline> arrayAdapter;
     KillDDLController controller = KillDDLController.getInstance();
 
+
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatDay = new SimpleDateFormat("d MMMM", Locale.getDefault());
 
@@ -64,6 +65,7 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         monthAndYear = (TextView) findViewById(R.id.month);
+        final FloatingActionButton addButtonCalendar = (FloatingActionButton) findViewById(R.id.add_button_calendar);
         calendarView = (CompactCalendarView) findViewById(R.id.calendarView);
         calendarView.setUseThreeLetterAbbreviation(true);
         calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
@@ -94,6 +96,14 @@ public class CalendarActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            }
+        });
+
+        addButtonCalendar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // redirect to add deadline page
+                Intent intent = new Intent(getApplicationContext(), AddDeadlineActivity.class);
+                startActivity(intent);
             }
         });
 

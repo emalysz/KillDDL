@@ -1,4 +1,6 @@
 package Model;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +30,9 @@ public class User {
     }
 
     public void removeDeadline(Deadline d){
-        int index = deadlines.indexOf(d);
-
-        deadlines.remove(index);
+        //int index = deadlines.indexOf(d);
+        Log.e("DEADLINE TO REMOVE IN USER", d.toString());
+        deadlines.remove(d);
     }
 
     public void editDeadlines(List<Deadline> _deadlines){

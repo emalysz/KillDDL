@@ -18,6 +18,8 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     private int notification;
     private int color;
     private int frequency;
+    private int id;
+    private static int deadlineID = 1;
 
     @Override
     public int compareTo(Deadline other){
@@ -31,12 +33,31 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         notification = _notification;
         color = _color;
         isComplete = false;
+        this.id = deadlineID;
+        deadlineID++;
 
         frequency = _frequency;
     }
 
     public String getTitle(){
         return title;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Deadline)) {
+            return false;
+        }
+        Deadline d = (Deadline)o;
+        return this.id == d.getId();
+    }
+
+    public int getId() {
+        return this.id;
     }
 
 
