@@ -1,5 +1,6 @@
 package com.example.emmamalysz.killddl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -117,13 +118,15 @@ public class SignupActivity extends LoginActivity{
                                 Log.d("checker", "successful??");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                startActivity(intent);
 //                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));
 //                                killDDl.setCurrentUser(currentUser);
 
                             } else {
                                 Log.d("checker", "other??");
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(SignupActivity.this, "Authentication failed.",
+                                Toast.makeText(SignupActivity.this, "Authentication failed. Username and password cannot be found.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
