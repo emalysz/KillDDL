@@ -19,11 +19,15 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import Controller.KillDDLController;
 import Model.Deadline;
+import view.DailyView;
+import view.DeadlineView;
 
 public class EditDeadlineActivity extends AppCompatActivity {
     EditText deadlineName;
@@ -31,20 +35,19 @@ public class EditDeadlineActivity extends AppCompatActivity {
     Button addDeadline;
     SeekBar notification;
     SeekBar priority;
+    SeekBar frequency;
     Date date;
     Spinner spinner;
     int color;
     private CalendarView calendarView;
     private Object AdapterView;
     private TimePicker timePicker1;
+    KillDDLController controller = KillDDLController.getInstance();
+    Deadline d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_deadline);
-
-
-
-
 
         //initialize widgets
         deadlineName = (EditText) findViewById(R.id.deadlineName);
@@ -52,6 +55,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
         addDeadline = (Button) findViewById(R.id.addDeadline);
         notification = (SeekBar)findViewById(R.id.notification);
         priority = (SeekBar)findViewById(R.id.priority);
+        frequency = (SeekBar)findViewById(R.id.frequency);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         date = Calendar.getInstance().getTime();
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
@@ -65,18 +69,24 @@ public class EditDeadlineActivity extends AppCompatActivity {
 
         //change values
         Intent intent = getIntent();
-        Deadline d = (Deadline) intent.getSerializableExtra("deadline");
+        d = (Deadline) intent.getSerializableExtra("edit");
         deadlineName.setText(d.getTitle());
         deadlineDescription.setText(d.getDescription());
         notification.setProgress(d.getNotification());
         priority.setProgress(d.getPriority());
         spinner.setSelection(d.getColor());
+        frequency.setProgress(d.getFrequency());
         timePicker1.setHour(d.getDate().getHours());
         timePicker1.setMinute(d.getDate().getMinutes());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-      //  Date date = sdf.parse(d.getDate().toString());
-        //long startDate = date.getTime();
-        //calendarView.setDate(d.getDate());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            Date date = sdf.parse(d.getDate().getMonth() + 1 + "/" + d.getDate().getDate() +  "/" + d.getDate().getYear());
+            long startDate  = date.getTime();
+            calendarView.setDate(startDate);
+        } catch (ParseException e){
+
+        }
+
 
         spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
@@ -112,20 +122,23 @@ public class EditDeadlineActivity extends AppCompatActivity {
                 String _dlDescription = deadlineDescription.getText().toString();
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
+                int _frequency = frequency.getProgress();
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
+                controller.removeDeadline(d);
+                Deadline dNew = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
+                controller.addDeadline(dNew);
+
                 System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
                 // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
                 // intent.putExtra("deadline", (Serializable) d);
                 // startActivity(intent);
 
-                Intent intent = new Intent();
-                intent.putExtra("deadline", (Serializable) d );
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+                intent.putExtra("Deadline", (Serializable) d );
+                startActivity(intent);
 
             }
         });

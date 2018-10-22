@@ -22,7 +22,9 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 
+import Controller.KillDDLController;
 import Model.Deadline;
+import view.DailyView;
 
 public class AddDeadlineActivity extends AppCompatActivity {
     EditText deadlineName;
@@ -30,22 +32,31 @@ public class AddDeadlineActivity extends AppCompatActivity {
     Button addDeadline;
     SeekBar notification;
     SeekBar priority;
+    SeekBar frequency;
     Date date;
     Spinner spinner;
     int color;
     private CalendarView calendarView;
     private Object AdapterView;
     private TimePicker timePicker1;
+
+    KillDDLController controller = KillDDLController.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_deadline);
+
+
+
+
+
         //initialize widgets
         deadlineName = (EditText) findViewById(R.id.deadlineName);
         deadlineDescription = (EditText) findViewById(R.id.deadlineDescription);
         addDeadline = (Button) findViewById(R.id.addDeadline);
         notification = (SeekBar)findViewById(R.id.notification);
         priority = (SeekBar)findViewById(R.id.priority);
+        frequency = (SeekBar)findViewById(R.id.frequency);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         date = Calendar.getInstance().getTime();
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
@@ -90,20 +101,24 @@ public class AddDeadlineActivity extends AppCompatActivity {
                 String _dlDescription = deadlineDescription.getText().toString();
                 int _notify = notification.getProgress();
                 int _priority = priority.getProgress();
+                int _frequency = frequency.getProgress();
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color);
-                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-                // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
-                // intent.putExtra("deadline", (Serializable) d);
-                // startActivity(intent);
+                Deadline d = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
+                controller.addDeadline(d);
+                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.getMonth() + " " + date.getDate() +  " " + date.getYear() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
 
+                Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);
+                intent.putExtra("new_deadline", (Serializable) d);
+                startActivity(intent);
+                /*
                 Intent intent = new Intent();
                 intent.putExtra("deadline", (Serializable) d );
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+                */
 
             }
         });

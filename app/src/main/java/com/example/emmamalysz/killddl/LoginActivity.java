@@ -42,6 +42,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -276,18 +277,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d("mytag", "entered");
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d("myTag", "signInWithEmail:success");
+                                Log.d("mytag", "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.d("myTag", "ugh sign in failed");
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Log.w("mytag", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Authentication failed. Email already taken.",
                                         Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                            }}
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("exception",e.getMessage());
+                }
+            });
         }
     }
 

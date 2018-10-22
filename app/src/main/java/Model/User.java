@@ -7,14 +7,13 @@ public class User {
     private String email;
     private String password;
     private int phoneNumber;
-    ArrayList<Deadline> deadlines;
+    List<Deadline> deadlines;
 
     public User(String _name, String _email, String _password, int _phoneNumber){
         name = _name;
         password = _password;
         email = _email;
         phoneNumber = _phoneNumber;
-
         deadlines = new ArrayList<Deadline>();
     }
 
@@ -34,8 +33,8 @@ public class User {
         deadlines.remove(index);
     }
 
-    public void editDeadline(Deadline d){
-
+    public void editDeadlines(List<Deadline> _deadlines){
+        deadlines = _deadlines;
     }
 
     public Boolean deadlineExists(Deadline d){
@@ -43,6 +42,7 @@ public class User {
 
         return isDeadline;
     }
+
 
     public List<Deadline> getDeadlines() {
         return this.deadlines;

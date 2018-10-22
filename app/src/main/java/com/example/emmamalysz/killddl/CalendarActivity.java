@@ -22,6 +22,7 @@ import android.widget.ListView;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ import Controller.KillDDLController;
 import Model.CustomListAdapter;
 import Model.Deadline;
 import Model.User;
+import view.DailyView;
+import view.DeadlineView;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -68,8 +71,8 @@ public class CalendarActivity extends AppCompatActivity {
 
         colorMap = new HashMap<Integer, Integer>();
         colorMap.put(0, Color.GREEN);
-        colorMap.put(1, Color.RED);
-        colorMap.put(2, Color.BLUE);
+        colorMap.put(1, Color.BLUE);
+        colorMap.put(2, Color.RED);
         colorMap.put(3, Color.GRAY);
 
 
@@ -86,7 +89,7 @@ public class CalendarActivity extends AppCompatActivity {
                 // change to daily view
                // controller.openDailyView();
                 // change activity which is sent to DAILYVIEW
-                Intent intent = new Intent(getApplicationContext(), AddDeadlineActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DailyView.class);
                 // to retrieve: getSerializable extra
                 startActivity(intent);
                 return true;
@@ -145,9 +148,8 @@ public class CalendarActivity extends AppCompatActivity {
                 Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
                 // change activity which is sent to DEADLINEVIEW
 
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.putExtra("DEADLINE", selectedDeadline);
-                // to retrieve: getSerializable extra
+                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+                intent.putExtra("Deadline", selectedDeadline);
                 startActivity(intent);
             }
         });

@@ -14,24 +14,27 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     private String title, description;
     private Date date;
     private int priority;
+    private Boolean isComplete;
     private int notification;
     private int color;
+    private int frequency;
 
     @Override
     public int compareTo(Deadline other){
         return date.compareTo(other.getDate());
     }
-    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color){
+    public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color, int _frequency){
         title = _title;
         description = _description;
         date = _date;
         priority = _priority;
         notification = _notification;
         color = _color;
+        isComplete = false;
+
+        frequency = _frequency;
     }
-    public String getDescription(){
-        return description;
-    }
+
     public String getTitle(){
         return title;
     }
@@ -41,6 +44,10 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public String toString() {
         SimpleDateFormat parseFormat = new SimpleDateFormat("d MMM K:mm a");
         return this.title + "- \t\t" + parseFormat.format(this.date);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getDate() {
@@ -62,5 +69,37 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         return color;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public Boolean isCompleted() {
+        return isComplete;
+    }
+
+    public void setIsComplete(Boolean isComplete) {
+        this.isComplete = isComplete;
+    }
+
+
+    public int getFrequency(){
+        return frequency;
+    }
 
 }

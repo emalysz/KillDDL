@@ -15,6 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddDeadlineActivity"
+            android:label="@string/new_tasks">
+
+        </activity>
+        <activity
+            android:name=".EditDeadlineActivity"
+            android:label="Edit Deadline">
+
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
 
@@ -25,11 +35,18 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="view.DailyView"
+            android:label="@string/title_activity_daily">
+        </activity>
 
+        <activity
+            android:name="view.DeadlineView"
+            android:label="@string/DeadlineView">
+        </activity>
         <activity android:name=".SignupActivity" />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

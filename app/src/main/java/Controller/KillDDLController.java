@@ -1,5 +1,6 @@
 package Controller;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.widget.AdapterView;
@@ -13,6 +14,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 
 import Model.Deadline;
 import Model.User;
@@ -30,9 +35,9 @@ public class KillDDLController {
         cal3.set(2018,8,20);
         this.currentUser = new User("Caroline", "a@usc.edu", "hi",
                 84727172);
-        this.currentUser.addDeadline(new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 0));
-        this.currentUser.addDeadline(new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1));
-        this.currentUser.addDeadline( new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 2));
+        this.currentUser.addDeadline(new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 0, 1));
+        this.currentUser.addDeadline(new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1, 1));
+        this.currentUser.addDeadline( new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 2, 1));
 
     }
 
@@ -56,6 +61,8 @@ public class KillDDLController {
 //    private EditView editView;
 
 
+
+
     public List<Deadline> getDeadlines() {
         Collections.sort(currentUser.getDeadlines());
         return currentUser.getDeadlines();
@@ -73,11 +80,16 @@ public class KillDDLController {
     }
 
     public List<Deadline> getDayDeadlines(Date date) {
+
         List<Deadline> userDeadlines = currentUser.getDeadlines();
         List<Deadline> dayDeadlines = new ArrayList<Deadline>();
         for (int i=0; i<userDeadlines.size(); i++) {
             if (userDeadlines.get(i).getDate().getMonth() == date.getMonth()) {
-                if (userDeadlines.get(i).getDate().getDay() == date.getDay()) {
+                Calendar cal1 = Calendar.getInstance();
+                Calendar cal2 = Calendar.getInstance();
+                cal1.setTime(userDeadlines.get(i).getDate());
+                cal2.setTime(date);
+                if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)) {
                     dayDeadlines.add(userDeadlines.get(i));
                 }
             }
@@ -92,9 +104,20 @@ public class KillDDLController {
      *
      */
 
-//    public void removeDeadline(Deadline deadline) {
-//
-//    }
+     public void setCurrentUser(User aCurrentUser) {
+         currentUser = aCurrentUser;
+     }
+
+
+
+    public void removeDeadline(Deadline deadline) {
+        List<Deadline> temp = currentUser.getDeadlines();
+        temp.remove(deadline);
+        currentUser.editDeadlines(temp);
+    }
+    public void addDeadline(Deadline deadline) {
+         currentUser.addDeadline(deadline);
+    }
 //
 //    public void addDeadline(Deadline deadline) {
 //
