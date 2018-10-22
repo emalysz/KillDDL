@@ -26,12 +26,28 @@ public class Deadline implements Serializable {
 
     }
 
-    public String getTitle() {
+    public String getTitle(){
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public int getNotification() {
+        return notification;
+    }
+
+    public int getColor() {
+        return color;
     }
 
     public String getDescription() {
@@ -42,24 +58,12 @@ public class Deadline implements Serializable {
         this.description = description;
     }
 
-    public int getColor() {
-        return color;
-    }
-
     public void setColor(int color) {
         this.color = color;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public int getPriority() {
-        return priority;
     }
 
     public void setPriority(int priority) {
