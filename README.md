@@ -4,11 +4,11 @@ KillDDL is an android application that keeps track of deadlines. We enable users
 Directions:
 
 1a. Sign up with a new user (ensure proper internet connection to connect to Google Play services)
-  a) email with "@"
-  b) password with 6+ characters
+    a) email with "@"
+    b) password with 6+ characters
 1b. Sign in with pre-populated user
-  user = nicole@gmail.com
-  pass = tester123
+    user = nicole@gmail.com
+    pass = tester123
 1c. Sign in with Facebook
 
 2. After signing in, you will be navigated to Monthly View where you can:
@@ -20,15 +20,15 @@ Directions:
 (otherwise you will be redirected to the current date's Daily View)
 
 4. On Daily View you can:
-  a) add deadlines
-  b) select to view a deadline
-  c) delete deadlines
+    a) add deadlines
+    b) select to view a deadline
+    c) delete deadlines
   
 5. Once a deadline is selected, you will be navigated to the Deadline View where you can:
-  a) mark deadline as 'Complete'
-  b) return to the Calendar View
-  c) edit deadline
-  d) delete deadline
+    a) mark deadline as 'Complete'
+    b) return to the Calendar View
+    c) edit deadline
+    d) delete deadline
   
   
   Notes:
