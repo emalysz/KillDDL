@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.emmamalysz.killddl.R;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Controller.KillDDLController;
 import view.DailyView;
 
 
@@ -30,6 +32,7 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
     private int id;
     private List<Deadline> items ;
     private Map<Integer, Integer> colorMap;
+    KillDDLController controller = KillDDLController.getInstance();
 
     public CustomListAdapter(Context context, int textViewResourceId , List<Deadline> list )
     {
@@ -45,7 +48,7 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
     }
 
     @Override
-    public View getView(int position, View v, ViewGroup parent)
+    public View getView(final int position, View v, ViewGroup parent)
     {
         View mView = v ;
         if(mView == null){
@@ -69,6 +72,17 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
 
         }
 
+        Button deleteBtn = (Button) mView.findViewById(R.id.delete_btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //do something
+                controller.removeDeadline(items.get(position));
+                items.remove(position); //or some other task
+                notifyDataSetChanged();
+            }
+        });
+        
         return mView;
     }
 
