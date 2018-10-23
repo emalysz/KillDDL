@@ -110,6 +110,8 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         this.priority = priority;
     }
 
+    public void setNotification(int notification) {this.notification = notification;}
+
     public Boolean isCompleted() {
         return isComplete;
     }
@@ -122,5 +124,18 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public int getFrequency(){
         return frequency;
     }
+
+    public void setFrequency(int frequency) {this.frequency = frequency;}
+
+//    public Deadline getDeadline(int _id){
+//        if (_id == this.id){
+//            return this;
+//        }
+//        else {
+//            return null;
+//        }
+//    }
+
+
 
 }

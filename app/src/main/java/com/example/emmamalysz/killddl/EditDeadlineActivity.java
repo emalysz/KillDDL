@@ -118,23 +118,17 @@ public class EditDeadlineActivity extends AppCompatActivity {
         addDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _dlName = deadlineName.getText().toString();
-                String _dlDescription = deadlineDescription.getText().toString();
-                int _notify = notification.getProgress();
-                int _priority = priority.getProgress();
-                int _frequency = frequency.getProgress();
+                d.setTitle(deadlineName.getText().toString());
+                d.setDescription(deadlineDescription.getText().toString());
+                d.setNotification(notification.getProgress());
+                d.setPriority(priority.getProgress());
+                d.setFrequency(frequency.getProgress());
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                controller.removeDeadline(d);
-                Deadline dNew = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
-                controller.addDeadline(dNew);
+                d.setDate(date);
 
-                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-                // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
-                // intent.putExtra("deadline", (Serializable) d);
-                // startActivity(intent);
 
                 Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
                 intent.putExtra("Deadline", (Serializable) d );
