@@ -81,13 +81,9 @@ public class EditDeadlineActivity extends AppCompatActivity {
         timePicker1.setHour(d.getDate().getHours());
         timePicker1.setMinute(d.getDate().getMinutes());
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        try {
-            Date date = sdf.parse(d.getDate().getMonth() + 1 + "/" + d.getDate().getDate() +  "/" + d.getDate().getYear());
-            long startDate  = date.getTime();
-            calendarView.setDate(startDate);
-        } catch (ParseException e){
-
-        }
+        Calendar c = Calendar.getInstance();
+     //  calendarView.setMinDate(d.getDate().getTime());
+        calendarView.setDate(d.getDate().getTime(), true, false);
 
 
         spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
