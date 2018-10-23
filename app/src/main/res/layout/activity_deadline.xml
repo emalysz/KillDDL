@@ -39,14 +39,14 @@
         android:id="@+id/completed_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mark as Completed" />
+        android:text="Mark as Complete" />
 
     <Button
         android:id="@+id/back_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="View Calendar" />
 
     <Button
         android:id="@+id/edit_button"

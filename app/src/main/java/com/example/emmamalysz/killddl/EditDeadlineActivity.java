@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import Controller.KillDDLController;
 import Model.Deadline;
@@ -70,6 +71,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
         //change values
         Intent intent = getIntent();
         d = (Deadline) intent.getSerializableExtra("edit");
+
         deadlineName.setText(d.getTitle());
         deadlineDescription.setText(d.getDescription());
         notification.setProgress(d.getNotification());
@@ -114,23 +116,23 @@ public class EditDeadlineActivity extends AppCompatActivity {
         addDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _dlName = deadlineName.getText().toString();
-                String _dlDescription = deadlineDescription.getText().toString();
-                int _notify = notification.getProgress();
-                int _priority = priority.getProgress();
-                int _frequency = frequency.getProgress();
+
+                Deadline newDeadline = d;
+
+                newDeadline.setTitle(deadlineName.getText().toString());
+                newDeadline.setDescription(deadlineDescription.getText().toString());
+                newDeadline.setNotification(notification.getProgress());
+                newDeadline.setPriority(priority.getProgress());
+                newDeadline.setFrequency(frequency.getProgress());
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                controller.removeDeadline(d);
-                Deadline dNew = new Deadline(_dlName, _dlDescription,date,_priority,_notify,color, _frequency);
-                controller.addDeadline(dNew);
+                newDeadline.setDate(date);
 
-                System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.toString() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-                // Intent intent = new Intent(AddDeadlineActivity.this, LoginActivity.class);
-                // intent.putExtra("deadline", (Serializable) d);
-                // startActivity(intent);
+                int index = controller.getDeadlineID(d);
+                controller.editDeadline(index, newDeadline);
+
 
                 Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
                 intent.putExtra("Deadline", (Serializable) d );
