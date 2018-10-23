@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.emmamalysz.killddl.CalendarActivity;
 import com.example.emmamalysz.killddl.EditDeadlineActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
@@ -89,7 +90,7 @@ public class DeadlineView extends AppCompatActivity {
         final Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 startActivity(intent);
             }
         });
