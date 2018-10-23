@@ -67,6 +67,9 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
             if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 0) {
                 text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
+            if (items.get(position).isCompleted()) {
+                text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
             int color = Color.argb( 200, 255, 64, 64 );
 
 

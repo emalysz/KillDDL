@@ -127,14 +127,9 @@ public class Deadline implements Serializable, Comparable<Deadline> {
 
     public void setFrequency(int frequency) {this.frequency = frequency;}
 
-//    public Deadline getDeadline(int _id){
-//        if (_id == this.id){
-//            return this;
-//        }
-//        else {
-//            return null;
-//        }
-//    }
+    public void setIsComplete() {
+        this.isComplete = true;
+    }
 
 
 

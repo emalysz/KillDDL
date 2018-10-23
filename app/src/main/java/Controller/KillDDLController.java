@@ -76,6 +76,10 @@ public class KillDDLController {
         return monthDeadlines;
     }
 
+    public void setDeadlineComplete(Deadline deadline) {
+        currentUser.setDeadlineComplete(deadline);
+    }
+
     public List<Deadline> getDayDeadlines(Date date) {
 
         List<Deadline> userDeadlines = currentUser.getDeadlines();

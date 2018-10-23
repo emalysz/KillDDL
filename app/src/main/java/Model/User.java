@@ -30,8 +30,7 @@ public class User {
     }
 
     public void removeDeadline(Deadline d){
-        //int index = deadlines.indexOf(d);
-        Log.e("DEADLINE TO REMOVE IN USER", d.toString());
+
         deadlines.remove(d);
     }
 
@@ -48,5 +47,13 @@ public class User {
 
     public List<Deadline> getDeadlines() {
         return this.deadlines;
+    }
+
+    public void setDeadlineComplete(Deadline deadline) {
+        for (int i=0; i<deadlines.size(); i++) {
+            if (deadlines.get(i).equals(deadline)) {
+                deadlines.get(i).setIsComplete();
+            }
+        }
     }
 }

@@ -65,7 +65,7 @@ public class DeadlineView extends AppCompatActivity {
         final Button completedButton = findViewById(R.id.completed_button);
         completedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                thisDeadline.setIsComplete(true);
+                controller.setDeadlineComplete(thisDeadline);
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
                 startActivity(intent);
             }
