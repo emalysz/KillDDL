@@ -116,6 +116,22 @@ public class KillDDLController {
     public void addDeadline(Deadline deadline) {
          currentUser.addDeadline(deadline);
     }
+
+    public int getDeadlineID(Deadline myDDL) {
+         for (int i = 0; i < currentUser.getDeadlines().size(); i++) {
+             if (myDDL.getId() == currentUser.getDeadlines().get(i).getId()) {
+                 return i;
+             }
+         }
+
+         return 0;
+    }
+
+    public void editDeadline(int _id, Deadline editedDeadline) {
+         List<Deadline> listDeadlines = getDeadlines();
+         listDeadlines.set(_id, editedDeadline);
+    }
+
 //
 //    public void addDeadline(Deadline deadline) {
 //

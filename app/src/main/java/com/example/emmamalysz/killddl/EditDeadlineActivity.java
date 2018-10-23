@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import Controller.KillDDLController;
 import Model.Deadline;
@@ -70,6 +71,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
         //change values
         Intent intent = getIntent();
         d = (Deadline) intent.getSerializableExtra("edit");
+
         deadlineName.setText(d.getTitle());
         deadlineDescription.setText(d.getDescription());
         notification.setProgress(d.getNotification());
@@ -118,16 +120,22 @@ public class EditDeadlineActivity extends AppCompatActivity {
         addDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                d.setTitle(deadlineName.getText().toString());
-                d.setDescription(deadlineDescription.getText().toString());
-                d.setNotification(notification.getProgress());
-                d.setPriority(priority.getProgress());
-                d.setFrequency(frequency.getProgress());
+
+                Deadline newDeadline = d;
+
+                newDeadline.setTitle(deadlineName.getText().toString());
+                newDeadline.setDescription(deadlineDescription.getText().toString());
+                newDeadline.setNotification(notification.getProgress());
+                newDeadline.setPriority(priority.getProgress());
+                newDeadline.setFrequency(frequency.getProgress());
                 int hour = timePicker1.getCurrentHour();
                 int min = timePicker1.getCurrentMinute();
                 date.setHours(hour);
                 date.setMinutes(min);
-                d.setDate(date);
+                newDeadline.setDate(date);
+
+                int index = controller.getDeadlineID(d);
+                controller.editDeadline(index, newDeadline);
 
 
                 Intent intent = new Intent(getApplicationContext(), DeadlineView.class);

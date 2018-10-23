@@ -19,7 +19,7 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     private int color;
     private int frequency;
     private int id;
-    private static int deadlineID = 1;
+    private static int deadlineID = 0;
 
     @Override
     public int compareTo(Deadline other){

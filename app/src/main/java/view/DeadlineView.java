@@ -40,18 +40,21 @@ public class DeadlineView extends AppCompatActivity {
         setContentView(R.layout.activity_deadline);
 
         final Deadline dl = (Deadline) getIntent().getSerializableExtra("Deadline");
+        List <Deadline> currDeadlines = controller.getDeadlines();
+        int index = controller.getDeadlineID(dl);
+        final Deadline thisDeadline = currDeadlines.get(index);
 
         final TextView title = findViewById(R.id.title);
-        title.setText(dl.getTitle());
+        title.setText(thisDeadline.getTitle());
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d 'at' hh:mm aaa");
         final TextView date = findViewById(R.id.date);
-        String newDate = sdf.format(dl.getDate());
+        String newDate = sdf.format(thisDeadline.getDate());
         date.setText(newDate);
 
 
         final TextView description = findViewById(R.id.description);
-        description.setText(dl.getDescription());
+        description.setText(thisDeadline.getDescription());
 
 //        final TextView completed = findViewById(R.id.complete_button);
 //        if(dl.isCompleted() == true) {
@@ -61,7 +64,7 @@ public class DeadlineView extends AppCompatActivity {
         final Button completedButton = findViewById(R.id.completed_button);
         completedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                dl.setIsComplete(true);
+                thisDeadline.setIsComplete(true);
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
                 startActivity(intent);
             }
@@ -71,10 +74,10 @@ public class DeadlineView extends AppCompatActivity {
         final Button deleteButton = findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.e("DEADLINE TO REMOVE", dl.toString());
+                Log.e("DEADLINE TO REMOVE", thisDeadline.toString());
                 controller.removeDeadline(dl);
                 Intent intent = new Intent(getApplicationContext(), DailyView.class);
-                intent.putExtra("delete", (Serializable) dl);
+                intent.putExtra("delete", (Serializable) thisDeadline);
                 startActivity(intent);
             }
         });
@@ -83,7 +86,7 @@ public class DeadlineView extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), EditDeadlineActivity.class);
-                intent.putExtra("edit", (Serializable) dl);
+                intent.putExtra("edit", (Serializable) thisDeadline);
                 startActivity(intent);
             }
         });
