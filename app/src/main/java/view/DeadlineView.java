@@ -55,7 +55,14 @@ public class DeadlineView extends AppCompatActivity {
 
 
         final TextView description = findViewById(R.id.description);
-        description.setText(thisDeadline.getDescription());
+        String descriptionText =  "";
+        descriptionText += thisDeadline.getDescription();
+        if (thisDeadline.getFrequency() == 1) {
+            descriptionText += "\nDaily Frequency";
+        } else if (thisDeadline.getFrequency() == 2) {
+            descriptionText += "\nMonthly Frequency";
+        }
+        description.setText(descriptionText);
 
 //        final TextView completed = findViewById(R.id.complete_button);
 //        if(dl.isCompleted() == true) {

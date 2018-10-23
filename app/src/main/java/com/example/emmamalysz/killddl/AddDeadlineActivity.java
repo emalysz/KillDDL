@@ -109,17 +109,10 @@ public class AddDeadlineActivity extends AppCompatActivity {
 
                 Deadline d = new Deadline(_dlName, _dlDescription,date.getTime(),_priority,_notify,color, _frequency);
                 controller.addDeadline(d);
-                //System.out.println("THE DEADLINE IS - " + _dlName + " - AND " + _dlDescription + " AT " + date.getMonth() + " " + date.getDate() +  " " + date.getYear() + " WITH PRIORITY " + _priority + " AND NOTIFICATION " + _notify);
-
                 Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);
                 intent.putExtra("new_deadline", (Serializable) d);
                 startActivity(intent);
-                /*
-                Intent intent = new Intent();
-                intent.putExtra("deadline", (Serializable) d );
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-                */
+
 
             }
         });

@@ -75,9 +75,9 @@ public class CalendarActivity extends AppCompatActivity {
         final TextView deadlineTitle = (TextView)findViewById(R.id.deadlineTitle);
 
         colorMap = new HashMap<Integer, Integer>();
-        colorMap.put(0, Color.GREEN);
-        colorMap.put(1, Color.BLUE);
-        colorMap.put(2, Color.RED);
+        colorMap.put(0, Color.rgb(0,184,148));
+        colorMap.put(1, Color.rgb(9, 132, 227));
+        colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
 
 
@@ -126,7 +126,6 @@ public class CalendarActivity extends AppCompatActivity {
             c.setTime(d.getDate());
             Event e = new Event(colorMap.get(d.getColor()), c.getTimeInMillis(), d.getTitle());
             calendarView.addEvent(e);
-
 
         }
 

@@ -2,6 +2,8 @@ package Model;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -26,7 +28,27 @@ public class User {
     }
 
     public void addDeadline(Deadline d){
+
         deadlines.add(d);
+        if (d.getFrequency() == 1) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(d.getDate());
+            long time = c.getTimeInMillis();
+            for (int i=0; i<365; i++) {
+                time = time + 86400000L;
+                deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
+                        d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
+            }
+        } else if (d.getFrequency() == 2) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(d.getDate());
+            long time = c.getTimeInMillis();
+            for (int i=0; i<12; i++) {
+                time = time + 2592000000L;
+                deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
+                        d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
+            }
+        }
     }
 
     public void removeDeadline(Deadline d){

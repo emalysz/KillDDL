@@ -35,9 +35,6 @@ public class KillDDLController {
         cal3.set(2018,8,20);
         this.currentUser = new User("Caroline", "a@usc.edu", "hi",
                 84727172);
-        this.currentUser.addDeadline(new Deadline("ITP Exam", "study for exam", cal1.getTime(), 1, 1, 0, 1));
-        this.currentUser.addDeadline(new Deadline("Electricity Bill", "pay online", cal2.getTime(), 2, 1, 1, 1));
-        this.currentUser.addDeadline( new Deadline("103 PA", "code in c++", cal3.getTime(), 1, 1, 2, 1));
 
     }
 
