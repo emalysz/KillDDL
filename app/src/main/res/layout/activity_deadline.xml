@@ -38,7 +38,8 @@
     <Button
         android:id="@+id/completed_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Mark as Completed" />
 
     <Button
         android:id="@+id/back_button"
