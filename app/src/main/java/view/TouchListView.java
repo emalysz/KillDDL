@@ -375,7 +375,7 @@ public class TouchListView extends ListView {
                             //time to avoid flicker
                             //if(action != MotionEvent.ACTION_DOWN){
                             doExpansion();
-                            //}
+                           // }
                         }
                         int speed = 0;
                         adjustScrollBounds(y);
