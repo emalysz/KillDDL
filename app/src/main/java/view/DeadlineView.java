@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.emmamalysz.killddl.CalendarActivity;
 import com.example.emmamalysz.killddl.EditDeadlineActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
@@ -21,6 +22,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import Controller.KillDDLController;
@@ -60,7 +62,7 @@ public class DeadlineView extends AppCompatActivity {
         completedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dl.setIsComplete(true);
-                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 startActivity(intent);
             }
         });
