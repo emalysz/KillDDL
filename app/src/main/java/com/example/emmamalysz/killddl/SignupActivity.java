@@ -20,6 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import Controller.KillDDLController;
 import Model.User;
 
@@ -82,7 +85,7 @@ public class SignupActivity extends LoginActivity{
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(email, 0)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -96,6 +99,10 @@ public class SignupActivity extends LoginActivity{
 
         if (TextUtils.isEmpty(phoneNumber)) {
             mPhonenumberView.setError(getString(R.string.error_field_required));
+            focusView = mPhonenumberView;
+            cancel = true;
+        } else if (!isPhoneNumberValid(phoneNumber)) {
+            mPhonenumberView.setError("This phone number is invalid");
             focusView = mPhonenumberView;
             cancel = true;
         }
@@ -135,8 +142,22 @@ public class SignupActivity extends LoginActivity{
         }
     }
 
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
+    public static boolean isEmailValid(String email, int num) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
+    public static boolean isPhoneNumberValid(String phoneNumber) {
+        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+        Matcher m = p.matcher(phoneNumber);
+        return (m.find() && m.group().equals(phoneNumber));
     }
 
 }
