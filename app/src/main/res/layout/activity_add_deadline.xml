@@ -15,7 +15,6 @@
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
-            android:id="@+id/add_deadline_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
