@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import Controller.KillDDLController;
+import Model.Deadline;
 import Model.User;
 
 import static org.junit.Assert.assertEquals;
