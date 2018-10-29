@@ -28,6 +28,9 @@ import java.util.Calendar;
 
 //import androidx.test.espresso.Espresso;
 
+import Controller.KillDDLController;
+import Model.Deadline;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -74,30 +77,15 @@ public class CalendarViewTests {
         Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void testDeadlineExists() {
+//        KillDDLController controller = KillDDLController.getInstance();
+//        controller.addDeadline(new Deadline("Exam","itp exam",Calendar.getInstance().getTime(),
+//                1, 1, 1, 1));
+//        Espresso.onView(withId(R.id.calendarView)).perform(swipeLeft());
+//        Espresso.onView(withId(R.id.calendarView)).perform(swipeRight());
+//        Espresso.onView(withId(R.id.action_calendar)).check(matches(withText("Exam")));
+    }
 
 
-
-
-    // test that the current date is highlighted
-
-    // test that a color shows up for a deadline with an event that day
-    // (check to see if adding event to calendar with correct colors)
-
-    // check that deadlines are displayed in list view
-
-    // when a day is clicked, the deadlines for that day are displayed
-
-    // when it is swiped to a new month, that month's deadlines are shown,
-
-    // check that deadlines is deleted with delete button and does not show up
-
-   /*
-    UI Tests (with espresso)
-    */
-
-    // check that when daily button clicked goes to daily view page
-
-    // check that when deadline clicked, redirected to deadline page with correct deadline
-
-    // check that delete button deletes deadline
 }

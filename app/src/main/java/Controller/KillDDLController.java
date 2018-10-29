@@ -94,6 +94,7 @@ public class KillDDLController {
     public void removeDeadline(Deadline deadline) {
         currentUser.removeDeadline(deadline);
     }
+
     public void addDeadline(Deadline deadline) {
          currentUser.addDeadline(deadline);
     }
