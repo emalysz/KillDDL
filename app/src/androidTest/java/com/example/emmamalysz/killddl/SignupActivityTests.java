@@ -2,8 +2,6 @@ package com.example.emmamalysz.killddl;
 
 import org.junit.Test;
 
-import java.lang.reflect.Method;
-import java.util.regex.Pattern;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 

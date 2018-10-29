@@ -5,10 +5,7 @@ import android.support.test.InstrumentationRegistry;
 
 import org.junit.Test;
 
-import java.util.Calendar;
-
 import Controller.KillDDLController;
-import Model.Deadline;
 import Model.User;
 
 import static org.junit.Assert.assertEquals;

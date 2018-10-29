@@ -39,9 +39,7 @@ public class SignInUITest {
         Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("nicole@gmail.com"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.email_sign_in_button)).perform(scrollTo(), click());
-//        Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
+      //  Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
     }
-
-
 
 }
