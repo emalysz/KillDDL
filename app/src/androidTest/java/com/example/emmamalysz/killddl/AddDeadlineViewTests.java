@@ -1,16 +1,22 @@
 package com.example.emmamalysz.killddl;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.Calendar;
 
 import static android.support.test.InstrumentationRegistry.getTargetContext;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -31,18 +37,21 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 public class AddDeadlineViewTests {
+
     @Rule
-    public ActivityTestRule<AddDeadlineActivity> mActivityTestRule = new ActivityTestRule<>(AddDeadlineActivity.class);
+    public ActivityTestRule<AddDeadlineActivity> mActivityTestRule = new ActivityTestRule<AddDeadlineActivity>(AddDeadlineActivity.class);
 
     @Test
     public void AddDeadlineActivity() {
         Espresso.onView(withId(R.id.deadlineName)).perform(scrollTo(), replaceText("Test Deadline"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.deadlineDescription)).perform(scrollTo(), replaceText("Deadline Description"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.addDeadline)).perform(scrollTo(),click());
-        Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
+      //  Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
     }
     @Test
     public void AddDeadlineCannotBeBlank() {
+        Espresso.onView(withId(R.id.addDeadline)).perform(scrollTo(),click());
+        Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
     }
 
 
