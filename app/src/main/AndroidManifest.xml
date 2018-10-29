@@ -39,7 +39,6 @@
             android:name=".CalendarActivity"
             android:label="KillDDL">
 
-
         </activity>
         <activity
             android:name="view.DailyView"
