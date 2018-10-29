@@ -25,16 +25,11 @@ import Model.User;
 public class KillDDLController {
 
     private static KillDDLController killDDLController;
+    private User currentUser;
 
     public KillDDLController() {
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
-        Calendar cal3 = Calendar.getInstance();
-        cal1.set(2018, 9, 10);
-        cal2.set(2018, 9, 15);
-        cal3.set(2018,8,20);
-        this.currentUser = new User("Caroline", "a@usc.edu", "hi",
-                84727172);
+
+        this.currentUser = null;
 
     }
 
@@ -45,22 +40,12 @@ public class KillDDLController {
         return killDDLController;
     }
 
-    /**
-     * Tentative member variables we will have, add more if needed
-     */
-
-      private User currentUser;
-      //private MainView mainView;
-      private CalendarActivity monthlyView;
-//    private DailyView dailyView;
-//    private DeadlineView deadlineView;
-//    private EditView editView;
-
 
     public List<Deadline> getDeadlines() {
         Collections.sort(currentUser.getDeadlines());
         return currentUser.getDeadlines();
     }
+
     public List<Deadline> getMonthlyDeadlines(Date date) {
         List<Deadline> userDeadlines = currentUser.getDeadlines();
         List<Deadline> monthDeadlines = new ArrayList<Deadline>();
@@ -75,6 +60,9 @@ public class KillDDLController {
 
     public void setDeadlineComplete(Deadline deadline) {
         currentUser.setDeadlineComplete(deadline);
+    }
+    public User getCurrentUser() {
+        return this.currentUser;
     }
 
     public List<Deadline> getDayDeadlines(Date date) {
@@ -96,12 +84,6 @@ public class KillDDLController {
         return dayDeadlines;
     }
 
-
-    /**
-     * Tentative classes for the controller, add more if needed
-     *
-     */
-
      public void setCurrentUser(User aCurrentUser) {
          currentUser = aCurrentUser;
      }
@@ -109,9 +91,6 @@ public class KillDDLController {
 
 
     public void removeDeadline(Deadline deadline) {
-//        List<Deadline> temp = currentUser.getDeadlines();
-//        temp.remove(deadline);
-//        currentUser.editDeadlines(temp);
         currentUser.removeDeadline(deadline);
     }
     public void addDeadline(Deadline deadline) {
@@ -133,30 +112,6 @@ public class KillDDLController {
          listDeadlines.set(_id, editedDeadline);
     }
 
-//
-//    public void addDeadline(Deadline deadline) {
-//
-//    }
-//
-//    public void validateLogin(String username, String password) {
-//
-//    }
-//
-//    public void openMainView() {
-//
-//    }
-//
-//    public void openDeadlineView() {
-//
-//    }
-//
-//    public void openEditView() {
-//
-//    }
-//
-//    public void openDailyView() {
-//
-//    }
 
 
 
