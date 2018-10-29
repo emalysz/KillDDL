@@ -15,6 +15,8 @@ import Model.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class KillDDLControllerTests {
 
@@ -37,6 +39,7 @@ public class KillDDLControllerTests {
         KillDDLController test = KillDDLController.getInstance();
         test.setCurrentUser(u);
         assertNotNull(test.getCurrentUser());
+        assertEquals(u, test.getCurrentUser());
     }
 
     @Test
@@ -123,7 +126,8 @@ public class KillDDLControllerTests {
         test.addDeadline(d);
         test.editDeadline(0, new Deadline("Another Exam Edited","Itp exam",Calendar.getInstance().getTime(),
                 1, 1, 1, 0));
-        assertEquals(test.getDeadlines().size(), 1);
+        assertTrue(test.getDeadlines().get(0).getTitle().equals("Another Exam Edited"));
+        assertFalse(test.getDeadlines().get(0).getTitle().equals("Another Exam"));
 
     }
 
