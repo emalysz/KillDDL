@@ -64,20 +64,20 @@ public class EditDeadlineActivity extends AppCompatActivity {
         //change values
         Intent intent = getIntent();
         d = (Deadline) intent.getSerializableExtra("edit");
-
-        deadlineName.setText(d.getTitle());
-        deadlineDescription.setText(d.getDescription());
-        notification.setProgress(d.getNotification());
-        priority.setProgress(d.getPriority());
-        spinner.setSelection(d.getColor());
-        frequency.setProgress(d.getFrequency());
-        timePicker1.setHour(d.getDate().getHours());
-        timePicker1.setMinute(d.getDate().getMinutes());
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        Calendar c = Calendar.getInstance();
-     //  calendarView.setMinDate(d.getDate().getTime());
-        calendarView.setDate(d.getDate().getTime(), true, false);
-
+        if(d != null) {
+            deadlineName.setText(d.getTitle());
+            deadlineDescription.setText(d.getDescription());
+            notification.setProgress(d.getNotification());
+            priority.setProgress(d.getPriority());
+            spinner.setSelection(d.getColor());
+            frequency.setProgress(d.getFrequency());
+            timePicker1.setHour(d.getDate().getHours());
+            timePicker1.setMinute(d.getDate().getMinutes());
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            Calendar c = Calendar.getInstance();
+            //  calendarView.setMinDate(d.getDate().getTime());
+            calendarView.setDate(d.getDate().getTime(), true, false);
+        }
 
         spinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
