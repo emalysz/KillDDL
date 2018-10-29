@@ -1,13 +1,9 @@
 package com.example.emmamalysz.killddl;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,15 +15,12 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import Controller.KillDDLController;
 import Model.Deadline;
-import view.DailyView;
 import view.DeadlineView;
 
 public class EditDeadlineActivity extends AppCompatActivity {
@@ -116,27 +109,30 @@ public class EditDeadlineActivity extends AppCompatActivity {
         addDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(deadlineName != null){
+                    deadlineName.setError("Title cannot be blank");
+                }else {
+                    Deadline newDeadline = d;
 
-                Deadline newDeadline = d;
+                    newDeadline.setTitle(deadlineName.getText().toString());
+                    newDeadline.setDescription(deadlineDescription.getText().toString());
+                    newDeadline.setNotification(notification.getProgress());
+                    newDeadline.setPriority(priority.getProgress());
+                    newDeadline.setFrequency(frequency.getProgress());
+                    int hour = timePicker1.getCurrentHour();
+                    int min = timePicker1.getCurrentMinute();
+                    date.setHours(hour);
+                    date.setMinutes(min);
+                    newDeadline.setDate(date);
 
-                newDeadline.setTitle(deadlineName.getText().toString());
-                newDeadline.setDescription(deadlineDescription.getText().toString());
-                newDeadline.setNotification(notification.getProgress());
-                newDeadline.setPriority(priority.getProgress());
-                newDeadline.setFrequency(frequency.getProgress());
-                int hour = timePicker1.getCurrentHour();
-                int min = timePicker1.getCurrentMinute();
-                date.setHours(hour);
-                date.setMinutes(min);
-                newDeadline.setDate(date);
-
-                int index = controller.getDeadlineID(d);
-                controller.editDeadline(index, newDeadline);
+                    int index = controller.getDeadlineID(d);
+                    controller.editDeadline(index, newDeadline);
 
 
-                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
-                intent.putExtra("Deadline", (Serializable) d );
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+                    intent.putExtra("Deadline", (Serializable) d);
+                    startActivity(intent);
+                }
 
             }
         });
