@@ -16,7 +16,10 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -49,6 +52,29 @@ public class CalendarViewTests {
            Espresso.onView(withId(R.id.dailyButton)).perform(click());
            Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void MonthDisplayedWhenCalendarClicked() {
+        Espresso.onView(withId(R.id.calendarView)).perform(swipeLeft());
+        Espresso.onView(withId(R.id.deadlineTitle)).check(matches(withText("This Month")));
+        Espresso.onView(withId(R.id.calendarView)).perform(click());
+        Espresso.onView(withId(R.id.calendarView)).perform(swipeRight());
+        Espresso.onView(withId(R.id.deadlineTitle)).check(matches(withText("This Month")));
+    }
+
+    @Test
+    public void dateDeadlinesDisplayedWhenDateClicked() {
+        Espresso.onView(withId(R.id.calendarView)).perform(click());
+        Espresso.onView(withText("This Month")).check(doesNotExist());
+    }
+
+    @Test
+    public void clickToAddDeadline() {
+        Espresso.onView(withId(R.id.add_button_calendar)).perform(click());
+        Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
+    }
+
+
 
 
 
