@@ -35,11 +35,21 @@ public class SignInUITest {
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
-    public void signInUITest() {
+    public void signInUITest() throws InterruptedException {
         Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("nicole@gmail.com"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.email_sign_in_button)).perform(scrollTo(), click());
-      //  Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
+        Thread.sleep(1500);
+        Espresso.onView(withId(R.id.calendarView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void invalidSignInUITest() throws InterruptedException {
+        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("invalidUser@gmail.com"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.email_sign_in_button)).perform(scrollTo(), click());
+        Thread.sleep(4500);
+        Espresso.onView(withId(R.id.login_button)).check(matches(isDisplayed()));
     }
 
 }

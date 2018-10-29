@@ -155,9 +155,10 @@ public class SignupActivity extends LoginActivity{
     }
 
     public static boolean isPhoneNumberValid(String phoneNumber) {
-        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
-        Matcher m = p.matcher(phoneNumber);
-        return (m.find() && m.group().equals(phoneNumber));
+//        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+//        Matcher m = p.matcher(phoneNumber);
+//        return (m.find() && m.group().equals(phoneNumber));
+        return true;
     }
 
 }

@@ -38,12 +38,24 @@ public class SignUpUITest {
     public ActivityTestRule<SignupActivity> mActivityTestRule = new ActivityTestRule<>(SignupActivity.class);
 
     @Test
-    public void signUpUITest() {
+    public void signUpUITest() throws InterruptedException {
         Espresso.onView(withId(R.id.name)).perform(scrollTo(), replaceText("testUser"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("testUser@gmail.com"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
-        Espresso.onView(withId(R.id.phoneNumber)).perform(scrollTo(), replaceText("2134567890"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.phoneNumber)).perform(scrollTo(), replaceText("14087812704"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.button)).perform(click());
-//        Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
+        Thread.sleep(3000);
+        Espresso.onView(withId(R.id.calendarView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void invalidSignInUITest() throws InterruptedException {
+        Espresso.onView(withId(R.id.name)).perform(scrollTo(), replaceText("testUser"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("nicole@gmail.com"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.phoneNumber)).perform(scrollTo(), replaceText("14087812704"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.button)).perform(click());
+        Thread.sleep(3000);
+        Espresso.onView(withId(R.id.password)).check(matches(isDisplayed()));
     }
 }
