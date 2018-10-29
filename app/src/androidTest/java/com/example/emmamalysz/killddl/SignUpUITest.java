@@ -29,19 +29,21 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 
 
-@RunWith(AndroidJUnit4.class)
-public class SignInUITest {
+/**
+ * Created by reysu on 10/28/18.
+ */
+
+public class SignUpUITest {
     @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
+    public ActivityTestRule<SignupActivity> mActivityTestRule = new ActivityTestRule<>(SignupActivity.class);
 
     @Test
-    public void signInUITest() {
-        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("nicole@gmail.com"), closeSoftKeyboard());
+    public void signUpUITest() {
+        Espresso.onView(withId(R.id.name)).perform(scrollTo(), replaceText("testUser"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("testUser@gmail.com"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
-        Espresso.onView(withId(R.id.email_sign_in_button)).perform(scrollTo(), click());
+        Espresso.onView(withId(R.id.phoneNumber)).perform(scrollTo(), replaceText("2134567890"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.button)).perform(click());
 //        Espresso.onView(withId(R.id.add_deadline_activity)).check(matches(isDisplayed()));
     }
-
-
-
 }
