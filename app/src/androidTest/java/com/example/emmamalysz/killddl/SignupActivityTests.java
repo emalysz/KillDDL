@@ -6,9 +6,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SignupActivityTests {
-    //TESTS:
-    //1. Check to see if email hasn't been taken yet
-    //3. Check to see if all fields have been submitted
 
     @Test
     public void emailValidator_isEmailValidTest() {
@@ -33,9 +30,6 @@ public class SignupActivityTests {
 
         //false because too little digits
         assertFalse(SignupActivity.isPhoneNumberValid("10"));
-
-        //false because invalid area code
-        assertFalse(SignupActivity.isPhoneNumberValid("5678729234"));
     }
     
 }
