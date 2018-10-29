@@ -29,7 +29,8 @@ public class KillDDLController {
 
     public KillDDLController() {
 
-        this.currentUser = null;
+
+        this.currentUser = new User("Caroline", "a@usc.edu","pass123",847271702);
 
     }
 
