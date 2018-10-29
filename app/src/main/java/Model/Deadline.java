@@ -76,8 +76,6 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     }
 
 
-
-
     public int getPriority() {
         return priority;
     }
