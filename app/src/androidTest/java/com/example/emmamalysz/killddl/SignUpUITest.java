@@ -40,7 +40,7 @@ public class SignUpUITest {
     @Test
     public void signUpUITest() throws InterruptedException {
         Espresso.onView(withId(R.id.name)).perform(scrollTo(), replaceText("testUser"), closeSoftKeyboard());
-        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("testUser@gmail.com"), closeSoftKeyboard());
+        Espresso.onView(withId(R.id.email)).perform(scrollTo(), replaceText("testUserEmmaTesting@gmail.com"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.password)).perform(scrollTo(), replaceText("tester123"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.phoneNumber)).perform(scrollTo(), replaceText("14087812704"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.button)).perform(click());
