@@ -69,6 +69,7 @@ public class EditDeadlineViewTests {
     }
     @Test
     public void DeadlineTitleCannotBeBlank() {
+        Espresso.onView(withId(R.id.deadlineName)).perform(scrollTo(), replaceText(""), closeSoftKeyboard());
         Espresso.onView(withId(R.id.addDeadline)).perform(scrollTo(),click());
         Espresso.onView(withId(R.id.edit_deadline_activity)).check(matches(isDisplayed()));
     }
