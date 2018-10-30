@@ -92,7 +92,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
         addDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(deadlineName == null){
+                if(deadlineName.getText().toString().isEmpty()){
                     deadlineName.setError("Title cannot be blank");
                 }else {
 
