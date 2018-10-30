@@ -67,7 +67,7 @@ public class SignupActivity extends LoginActivity{
         final String email = mEmailView.getText().toString();
         final String password = mPasswordView.getText().toString();
         final String name = mNameView.getText().toString();
-        final String phoneNumber = mPhonenumberView.toString();
+        final String phoneNumber = mPhonenumberView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -133,7 +133,7 @@ public class SignupActivity extends LoginActivity{
                             } else {
                                 Log.d("checker", "other??");
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(SignupActivity.this, "Authentication failed. Username and password cannot be found.",
+                                Toast.makeText(SignupActivity.this, "Authentication failed. Username is already taken.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -143,6 +143,7 @@ public class SignupActivity extends LoginActivity{
     }
 
     public static boolean isEmailValid(String email, int num) {
+        Log.d("checker", "hello" + email);
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
