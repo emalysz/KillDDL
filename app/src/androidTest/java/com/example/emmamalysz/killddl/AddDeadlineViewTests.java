@@ -45,8 +45,9 @@ public class AddDeadlineViewTests {
         Espresso.onView(withId(R.id.deadlineName)).perform(scrollTo(), replaceText("Test Deadline"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.deadlineDescription)).perform(scrollTo(), replaceText("Deadline Description"), closeSoftKeyboard());
         Espresso.onView(withId(R.id.addDeadline)).perform(scrollTo(),click());
-        Thread.sleep(3000);
+        Thread.sleep(4500);
         Espresso.onView(withId(R.id.daily_view)).check(matches(isDisplayed()));
+      //  Espresso.onView(withId(R.id.calendarView)).check(matches(isDisplayed()));
     }
     @Test
     public void AddDeadlineCannotBeBlank() {
