@@ -2,4 +2,5 @@
 <resources>
     <item type="id" name="login_status"/>
     <item type="id" name="buttonFacebookLogin"/>
+    <item type="id" name="twitter_button"/>
 </resources>

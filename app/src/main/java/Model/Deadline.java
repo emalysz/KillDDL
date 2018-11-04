@@ -1,7 +1,13 @@
 package Model;
 
 
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+
+import com.example.emmamalysz.killddl.MyReceiver;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -130,6 +136,8 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public void setIsComplete() {
         this.isComplete = true;
     }
+
+
 
 
 

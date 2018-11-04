@@ -1,9 +1,19 @@
 package com.example.emmamalysz.killddl;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +23,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import java.util.Date;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -107,6 +118,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
 
 
                     Deadline d = new Deadline(_dlName, _dlDescription, date.getTime(), _priority, _notify, color, _frequency);
+                    setNotificationUpdate(_notify);
                     controller.addDeadline(d);
                     Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);
                     intent.putExtra("new_deadline", (Serializable) d);
@@ -116,6 +128,78 @@ public class AddDeadlineActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void setNotificationUpdate(int notification) {
+//        Intent notifyIntent = new Intent(this, MyReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast
+//                (this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+//                6000, pendingIntent);
+
+//        Intent intent = new Intent(this, MyReceiver.class);
+//        intent.putExtra("Message", "this is your notification");
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+//                intent, PendingIntent.FLAG_ONE_SHOT);
+        Intent intent;
+        PendingIntent pendingIntent;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "MyNotifChannel2";
+            String description = "My description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("MyNotifChannel2", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+//        Uri defaultSoundUri = RingtoneManager
+//                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
+//                this).setSmallIcon(R.drawable.ic_android_black_24dp)
+//                .setContentTitle("CCD Message").setContentText("this is your notification")
+//                .setAutoCancel(true).setSound(defaultSoundUri)
+//                .setContentIntent(pendingIntent).setChannelId("MyNotifChannel2");;
+//
+//
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+
+//        notificationManager.notify(0, notificationBuilder.build());
+        if (notification == 1) {
+            Date date = new Date();
+            date.setTime(System.currentTimeMillis() + (60 * 60 * 1000));
+            calendar.setTime(date);
+            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            intent = new Intent(this, MyReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR,
+                    pendingIntent);
+        } else if (notification ==2) {
+            Date date = new Date();
+            date.setTime(System.currentTimeMillis() + (24*60 * 60 * 1000));
+            calendar.setTime(date);
+            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            intent = new Intent(this, MyReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR,
+                    pendingIntent);
+        } else if (notification == 3) {
+            Date date = new Date();
+            date.setTime(System.currentTimeMillis() + (7*24*60 * 60 * 1000));
+            calendar.setTime(date);
+            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            intent = new Intent(this, MyReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR,
+                    pendingIntent);
+        }
 
     }
 }

@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="2 days"
+                    android:text="1 hour"
                     android:textSize="10sp"/>
 
                 <TextView
@@ -168,7 +168,7 @@
                     android:layout_weight="1"
                     android:focusable="false"
                     android:gravity="center"
-                    android:text="1 week"
+                    android:text="1 day"
                     android:textSize="10sp"/>
                 <TextView
                     android:id="@+id/txtSize4"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="2 weeks"
+                    android:text="1 week"
                     android:textSize="10sp"/>
             </LinearLayout>
             <SeekBar
