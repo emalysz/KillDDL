@@ -43,6 +43,7 @@ public class DeadlineView extends AppCompatActivity {
         final Deadline dl = (Deadline) getIntent().getSerializableExtra("Deadline");
         List <Deadline> currDeadlines = controller.getDeadlines();
         int index = controller.getDeadlineID(dl);
+
         final Deadline thisDeadline = currDeadlines.get(index);
 
         final TextView title = findViewById(R.id.title);
