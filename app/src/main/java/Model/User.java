@@ -39,7 +39,15 @@ public class User {
                 deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
                         d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
             }
-        } else if (d.getFrequency() == 2) {
+        } else if (d.getFrequency() == 2){
+            Calendar c = Calendar.getInstance();
+            c.setTime(d.getDate());
+            long time = c.getTimeInMillis();
+            for (int i = 0; i < 7; i++){
+
+            }
+        }
+        else if (d.getFrequency() == 2) {
             Calendar c = Calendar.getInstance();
             c.setTime(d.getDate());
             long time = c.getTimeInMillis();
@@ -48,6 +56,7 @@ public class User {
                 deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
                         d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
             }
+
         }
     }
 
