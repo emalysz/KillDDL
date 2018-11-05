@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.emmamalysz.killddl.R;
@@ -41,7 +42,7 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
         id = textViewResourceId;
         items = list ;
         colorMap = new HashMap<Integer, Integer>();
-        colorMap.put(0, Color.rgb(0,184,148));
+        colorMap.put(0, Color.rgb(26,142,100));
         colorMap.put(1, Color.rgb(9, 132, 227));
         colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
@@ -57,13 +58,16 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
         }
 
         TextView text = (TextView) mView.findViewById(R.id.listTextView);
+        ImageView colorTab = (ImageView) mView.findViewById(R.id.ColorTab);
 
         if(items.get(position) != null )
         {
-            text.setTextColor(Color.WHITE);
+          //  text.setTextColor(Color.WHITE);
+            text.setTextColor(Color.BLACK);
             text.setText(items.get(position).toString());
             text.setTextSize(15);
-            text.setBackgroundColor(colorMap.get(items.get(position).getColor()));
+            colorTab.setBackgroundColor(colorMap.get(items.get(position).getColor()));
+            //text.setBackgroundColor(colorMap.get(items.get(position).getColor()));
             if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 0) {
                 text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }

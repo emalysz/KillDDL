@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_marginTop="5dp"
         android:descendantFocusability="blocksDescendants">
+
+
         <TextView
-            android:layout_width="285dp"
+            android:layout_width="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@id/ColorTab"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="hi"
             android:id="@+id/listTextView"
             android:textSize="20px" android:paddingTop="10dip" android:paddingBottom="10dip"
             android:focusableInTouchMode="false"
             android:clickable="false"
             android:focusable="false"/>
+        <ImageView
+            android:id="@+id/ColorTab"
+            android:layout_width="5dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_orange_light"
+            />
         <Button
             android:id="@+id/delete_btn"
-            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:text="Delete"/>
-    </LinearLayout>
+            android:background="@drawable/ic_trash"
+            />
+    </RelativeLayout>
 
