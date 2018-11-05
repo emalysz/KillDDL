@@ -224,6 +224,16 @@
                     android:textSize="10sp"/>
 
                 <TextView
+                    android:id="@+id/WeeklyFreq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:text="Weekly"
+                    android:textSize="10sp"/>
+
+                <TextView
                     android:id="@+id/MonthlyFreq"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -233,14 +243,15 @@
                     android:text="Monthly"
                     android:textSize="10sp"/>
             </LinearLayout>
+
             <SeekBar
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:id="@+id/frequency"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:max="2"
+                android:max="3"
                 android:progress="1" />
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/addDeadline"

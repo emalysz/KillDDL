@@ -43,11 +43,13 @@ public class User {
             Calendar c = Calendar.getInstance();
             c.setTime(d.getDate());
             long time = c.getTimeInMillis();
-            for (int i = 0; i < 7; i++){
-
+            for (int i = 0; i < 52; i++){
+                time = time + 604800000L;
+                deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
+                        d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
             }
         }
-        else if (d.getFrequency() == 2) {
+        else if (d.getFrequency() == 3) {
             Calendar c = Calendar.getInstance();
             c.setTime(d.getDate());
             long time = c.getTimeInMillis();
