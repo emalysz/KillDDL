@@ -79,6 +79,25 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
 
         }
 
+        TextView timeRemaining = (TextView) mView.findViewById(R.id.time_remaining);
+        if (items.get(position) != null) {
+            if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 8640000000L) {
+                long deadlineTime = items.get(position).getDate().getTime();
+                long currentTime = Calendar.getInstance().getTimeInMillis();
+                System.out.print("deadlineTime: " + deadlineTime + " currentTime: " + currentTime);
+                long difference = deadlineTime - currentTime;
+                System.out.print("difference: " + difference);
+                if (difference <= 36000000L) {
+                    timeRemaining.setText("< 1 H");
+                    timeRemaining.setTextColor(Color.RED);
+                }
+                else {
+                    timeRemaining.setText(difference + " remaining");
+                    timeRemaining.setTextColor(Color.RED);
+                }
+            }
+        }
+
         Button deleteBtn = (Button) mView.findViewById(R.id.delete_btn);
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override

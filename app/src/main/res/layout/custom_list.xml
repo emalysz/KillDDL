@@ -27,7 +27,20 @@
             android:layout_alignParentStart="true"
             android:background="@android:color/holo_orange_light"
             />
-        <Button
+
+    <TextView
+        android:id="@+id/time_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/listTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="67dp"
+        android:layout_marginRight="67dp"
+        android:layout_marginBottom="5dp"
+        android:textAlignment="center" />
+
+    <Button
             android:id="@+id/delete_btn"
             android:layout_alignParentRight="true"
             android:scaleX="0.6"
