@@ -21,11 +21,11 @@ public class User {
         deadlines = new ArrayList<Deadline>();
     }
 
-    public Boolean authenticateUser(String email, String password){
-        Boolean isUser = false;
-
-        return isUser;
-    }
+//    public Boolean authenticateUser(String email, String password){
+//        Boolean isUser = false;
+//
+//        return isUser;
+//    }
 
     public void addDeadline(Deadline d){
 
@@ -39,7 +39,17 @@ public class User {
                 deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
                         d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
             }
-        } else if (d.getFrequency() == 2) {
+        } else if (d.getFrequency() == 2){
+            Calendar c = Calendar.getInstance();
+            c.setTime(d.getDate());
+            long time = c.getTimeInMillis();
+            for (int i = 0; i < 52; i++){
+                time = time + 604800000L;
+                deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
+                        d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
+            }
+        }
+        else if (d.getFrequency() == 3) {
             Calendar c = Calendar.getInstance();
             c.setTime(d.getDate());
             long time = c.getTimeInMillis();
@@ -48,6 +58,7 @@ public class User {
                 deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
                         d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
             }
+
         }
     }
 
@@ -56,15 +67,15 @@ public class User {
         deadlines.remove(d);
     }
 
-    public void editDeadlines(List<Deadline> _deadlines){
-        deadlines = _deadlines;
-    }
+//    public void editDeadlines(List<Deadline> _deadlines){
+//        deadlines = _deadlines;
+//    }
 
-    public Boolean deadlineExists(Deadline d){
-        Boolean isDeadline = false;
-
-        return isDeadline;
-    }
+//    public Boolean deadlineExists(Deadline d){
+//        Boolean isDeadline = false;
+//
+//        return isDeadline;
+//    }
 
 
     public List<Deadline> getDeadlines() {

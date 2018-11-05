@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/edit_deadline_activity"
     tools:context="com.example.emmamalysz.killddl.EditDeadlineActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,12 +21,14 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:text="Time" />
+
             <TimePicker
                 android:id="@+id/timePicker1"
                 android:layout_width="match_parent"
@@ -36,26 +39,26 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:text="Title" />
 
             <EditText
                 android:id="@+id/deadlineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
-
                 android:layout_marginTop="30dp"
+
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Description" />
 
@@ -63,33 +66,36 @@
                 android:id="@+id/deadlineDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
-                android:text="Color"/>
+                android:text="Color" />
+
             <Spinner
                 android:id="@+id/color_spinner"
                 android:layout_width="fill_parent"
 
-                android:layout_marginEnd="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_height="wrap_content" />
+                android:layout_marginEnd="30dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
-                android:text="Priority"/>
+                android:text="Priority" />
 
 
             <LinearLayout
@@ -104,7 +110,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Low"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/priority2"
@@ -113,7 +119,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Medium"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/priority3"
@@ -123,25 +129,28 @@
                     android:focusable="false"
                     android:gravity="center"
                     android:text="High"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <SeekBar
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:id="@+id/priority"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:max="2"
                 android:progress="1" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Notification" />
+
             <LinearLayout
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
@@ -154,7 +163,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="None"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/txtSize_2"
@@ -163,7 +172,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="2 days"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/txtSize_3"
@@ -173,7 +182,8 @@
                     android:focusable="false"
                     android:gravity="center"
                     android:text="1 week"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
+
                 <TextView
                     android:id="@+id/txtSize4"
                     android:layout_width="0dp"
@@ -181,25 +191,28 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="2 weeks"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <SeekBar
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:id="@+id/notification"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:max="3"
                 android:progress="1" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Frequency" />
+
             <LinearLayout
                 android:id="@+id/Freq"
                 android:layout_width="match_parent"
@@ -212,7 +225,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="None"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/DailyFreq"
@@ -221,6 +234,16 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Daily"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/WeeklyFreq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:text="Weekly"
                     android:textSize="10sp"/>
 
                 <TextView
@@ -231,17 +254,19 @@
                     android:focusable="false"
                     android:gravity="center"
                     android:text="Monthly"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <SeekBar
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:id="@+id/frequency"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:max="2"
+                android:max="3"
                 android:progress="1" />
+
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/addDeadline"
                 android:layout_width="match_parent"
