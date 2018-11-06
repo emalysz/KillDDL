@@ -97,6 +97,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Configure Twitter SDK
+        TwitterAuthConfig authConfig =  new TwitterAuthConfig(
+                "QSAR5UlEwMNxocqexpK8sRNT6", "WecxVRqxUDFEldFZIWs6ZacGZIo4dNoGNA0YgN1AsOFQli9MkH");
+
+        TwitterConfig twitterConfig = new TwitterConfig.Builder(this)
+                .twitterAuthConfig(authConfig)
+                .build();
+
+        Twitter.initialize(twitterConfig);
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -116,16 +125,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
-        // Configure Twitter SDK
-        TwitterAuthConfig authConfig =  new TwitterAuthConfig(
-                "QSAR5UlEwMNxocqexpK8sRNT6 ", "WecxVRqxUDFEldFZIWs6ZacGZIo4dNoGNA0YgN1AsOFQli9MkH");
-
-        TwitterConfig twitterConfig = new TwitterConfig.Builder(this)
-                .twitterAuthConfig(authConfig)
-                .build();
-
-        Twitter.initialize(twitterConfig);
 
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -237,7 +236,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void handleTwitterSession(TwitterSession session) {
-        Log.d(TAG, "handleTwitterSession:" + session);
+        Log.d("handleTwitter", "handleTwitterSession:" + session);
 
         AuthCredential credential = TwitterAuthProvider.getCredential(
                 session.getAuthToken().token,
@@ -249,7 +248,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+                            Log.d("twitter check", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
                             startActivity(intent);
@@ -269,7 +268,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        mLoginButton.onActivityResult(requestCode, resultCode, data);
     }
+
 
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
