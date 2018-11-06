@@ -2,7 +2,7 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:descendantFocusability="blocksDescendants">
 
@@ -15,7 +15,7 @@
             android:paddingLeft="10dp"
             android:text="hi"
             android:id="@+id/listTextView"
-            android:textSize="20px" android:paddingTop="10dip" android:paddingBottom="10dip"
+            android:textSize="20dp" android:paddingTop="10dip" android:paddingBottom="10dip"
             android:focusableInTouchMode="false"
             android:clickable="false"
             android:focusable="false"/>

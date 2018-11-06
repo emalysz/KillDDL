@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,14 +30,17 @@ import java.util.List;
 
 import Controller.KillDDLController;
 import Model.CustomListAdapter;
+import Model.CustomRListAdapter;
 import Model.Deadline;
+import Model.SimpleItemTouchHelperCallback;
 
 public class DailyView extends AppCompatActivity {
 
     List<Deadline> ddls;
-    ListView deadlineList;
+    RecyclerView deadlineList;
     KillDDLController controller = KillDDLController.getInstance();
     Date selectedDate;
+    private ItemTouchHelper mItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,29 +60,38 @@ public class DailyView extends AppCompatActivity {
 
         final Button monthlyButton = findViewById(R.id.monthly_button);
 
-        deadlineList = (ListView) findViewById(R.id.deadline_list);
+       // deadlineList = (ListView) findViewById(R.id.deadline_list);
         List<Deadline> ddls = controller.getDayDeadlines(selectedDate);
 
 //        if (controller.getDeadlines() != null) {
 //            ddls = controller.getDeadlines();
 //        }
 
-        ArrayAdapter<Deadline> arrayAdapter = new CustomListAdapter(DailyView.this ,
-                R.layout.custom_list , ddls);
+        //ArrayAdapter<Deadline> arrayAdapter = new CustomListAdapter(DailyView.this ,
+               // R.layout.custom_list , ddls);
+
+        deadlineList = (RecyclerView) findViewById(R.id.deadline_list);
+        CustomRListAdapter adapter = new CustomRListAdapter(ddls);
+        deadlineList.setAdapter(adapter);
+        deadlineList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(deadlineList);
 
 
-        deadlineList.setAdapter(arrayAdapter);
 
 
-        deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Deadline selectedDeadline = (Deadline) deadlineList.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
-                intent.putExtra("Deadline", (Serializable) selectedDeadline);
-                startActivity(intent);
-            }
-        });
+//
+//        deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Deadline selectedDeadline = (Deadline) deadlineList.getItemAtPosition(position);
+//                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+//                intent.putExtra("Deadline", (Serializable) selectedDeadline);
+//                startActivity(intent);
+//            }
+//        });
 
         final FloatingActionButton addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
