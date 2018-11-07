@@ -105,7 +105,6 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
     @Override
     public void onItemMove(int fromPosition, int toPosition) {
         Deadline prev = items.remove(fromPosition);
-        controller.swapDeadlines(fromPosition, toPosition);
         items.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
         notifyItemMoved(fromPosition, toPosition);
     }
