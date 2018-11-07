@@ -143,7 +143,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         }
 
-        
+
 
 
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {

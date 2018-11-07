@@ -62,13 +62,13 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
 
         if(items.get(position) != null )
         {
-            //  text.setTextColor(Color.WHITE);
+
             holder.d = items.get(position);
             holder.textView.setTextColor(Color.BLACK);
             holder.textView.setText(items.get(position).toString());
             holder.textView.setTextSize(15);
             holder.colorTab.setBackgroundColor(colorMap.get(items.get(position).getColor()));
-            //text.setBackgroundColor(colorMap.get(items.get(position).getColor()));
+
             if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 0) {
                 holder.textView.setPaintFlags(holder.textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
@@ -105,6 +105,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
     @Override
     public void onItemMove(int fromPosition, int toPosition) {
         Deadline prev = items.remove(fromPosition);
+        controller.swapDeadlines(fromPosition, toPosition);
         items.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
         notifyItemMoved(fromPosition, toPosition);
     }
