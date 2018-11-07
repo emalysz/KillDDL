@@ -89,4 +89,6 @@ public class User {
             }
         }
     }
+
+    public void setDeadlines(List<Deadline> deadlines) { this.deadlines = deadlines; }
 }

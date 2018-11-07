@@ -107,6 +107,17 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         Deadline prev = items.remove(fromPosition);
         items.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
         notifyItemMoved(fromPosition, toPosition);
+        Log.d("dragTag", "fromPosition" + fromPosition);
+        Log.d("dragTag", "toPosition" + toPosition);
+//        controller.getCurrentUser().getDeadlines().set(toPosition)
+        //move everything else in the list down
+        controller.getCurrentUser().getDeadlines().get(toPosition).setNewPosition(toPosition);
+        items.get(toPosition).setIsDragged(true);
+        for (int i = 0; i < items.size(); i++) {
+            Log.d("dragTag", "item title " + items.get(i).getTitle());
+            Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
+        }
+        controller.getCurrentUser().setDeadlines(items);
     }
 
 
