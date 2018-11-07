@@ -7,7 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,7 +39,9 @@ import java.util.Map;
 
 import Controller.KillDDLController;
 import Model.CustomListAdapter;
+import Model.CustomRListAdapter;
 import Model.Deadline;
+import Model.SimpleItemTouchHelperCallback;
 import Model.User;
 import view.DailyView;
 import view.DeadlineView;
@@ -45,15 +50,16 @@ public class CalendarActivity extends AppCompatActivity {
 
     CompactCalendarView calendarView;
     TextView monthAndYear;
-    ListView deadlineList;
+    RecyclerView deadlineList;
     Button monthlyButton;
     Button dailyButton;
     List<Deadline> ddls;
     Map<Integer, Integer> colorMap;
-    ArrayAdapter<Deadline> arrayAdapter;
+    CustomRListAdapter arrayAdapter;
     KillDDLController controller = KillDDLController.getInstance();
     Date currDate;
     Calendar curr;
+    ItemTouchHelper mItemTouchHelper;
 
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
@@ -113,7 +119,15 @@ public class CalendarActivity extends AppCompatActivity {
 
         Calendar cal1 = Calendar.getInstance();
         ddls = controller.getMonthlyDeadlines(cal1.getTime());
-        deadlineList = (ListView) findViewById(R.id.deadlineList);
+        deadlineList = (RecyclerView) findViewById(R.id.deadlineList);
+        arrayAdapter = new CustomRListAdapter(ddls);
+        CustomRListAdapter adapter = new CustomRListAdapter(ddls);
+        deadlineList.setAdapter(adapter);
+        deadlineList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(deadlineList);
 
 
         monthAndYear.setText(new SimpleDateFormat("MMMM - yyyy").format(cal1.getTime()));
@@ -129,18 +143,14 @@ public class CalendarActivity extends AppCompatActivity {
 
         }
 
-        arrayAdapter = new CustomListAdapter(CalendarActivity.this ,
-                R.layout.custom_list , ddls);
 
-
-        deadlineList.setAdapter(arrayAdapter);
 
 
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 List<Deadline> dayDeadlines = controller.getDayDeadlines(dateClicked);
-                deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, dayDeadlines));
+                deadlineList.setAdapter(new CustomRListAdapter(dayDeadlines));
                 deadlineTitle.setText(dateFormatDay.format(dateClicked));
                 currDate = dateClicked;
             }
@@ -149,7 +159,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 monthAndYear.setText(dateFormatMonth.format(firstDayOfNewMonth));
                 List<Deadline> monthDeadlines = controller.getMonthlyDeadlines(firstDayOfNewMonth);
-                deadlineList.setAdapter(new CustomListAdapter(CalendarActivity.this, R.layout.custom_list, monthDeadlines));
+                deadlineList.setAdapter(new CustomRListAdapter( monthDeadlines));
                 deadlineTitle.setText("This Month");
                 currDate = curr.getTime();
 
@@ -157,19 +167,19 @@ public class CalendarActivity extends AppCompatActivity {
 
         });
 
-
-        deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
-                // change activity which is sent to DEADLINEVIEW
-
-                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
-                intent.putExtra("Deadline", selectedDeadline);
-                startActivity(intent);
-            }
-        });
+//
+//        deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
+//                // change activity which is sent to DEADLINEVIEW
+//
+//                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
+//                intent.putExtra("Deadline", selectedDeadline);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 }

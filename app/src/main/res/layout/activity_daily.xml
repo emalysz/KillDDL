@@ -65,7 +65,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
+        <!--<ListView-->
+            <!--android:id="@+id/deadline_list"-->
+            <!--android:layout_width="406dp"-->
+            <!--android:layout_height="325dp" />-->
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/deadline_list"
             android:layout_width="406dp"
             android:layout_height="325dp" />
