@@ -13,11 +13,11 @@ Directions:
 
 Improved capabilities: 
   
-  - Drag-and-Drop feature: We were able to implement drag-and-drop to change the priority of a deadline in Calendar View. 
+  - Drag-and-drop: We were able to implement drag-and-drop to change the priority of a deadline in Calendar View. 
      A user can now drag a deadline to the top if they would like to change the deadline's priority. 
-  - Weekly Frequency feature: An additional option for the user aside from daily and monthly frequency. 
-  - Delete by swiping feature: A user can now swipe a deadline or click the red trash can icon to delete it. 
-  - Push notifications feature: A user can have the option to receive push notifications that will show up on the Android device. 
+  - Weekly frequency: An additional option for the user aside from daily and monthly frequency. 
+  - Delete by swiping: A user can now swipe a deadline or click the red trash can icon to delete it. 
+  - Push notifications: A user can have the option to receive push notifications that will show up on the Android device. 
   - Twitter login: In addition to creating a new account and connecting through Facebook, a user can now login through Twitter as well. 
  
   
