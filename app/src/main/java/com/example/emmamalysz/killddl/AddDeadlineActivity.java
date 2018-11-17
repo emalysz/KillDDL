@@ -19,10 +19,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import java.util.Date;
 
 import java.io.Serializable;
@@ -115,6 +118,10 @@ public class AddDeadlineActivity extends AppCompatActivity {
                     int hour = timePicker1.getCurrentHour();
                     int min = timePicker1.getCurrentMinute();
                     date.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), hour, min);
+                    boolean checked = ((CheckBox) findViewById(R.id.checkbox_email)).isChecked();
+                    if (checked) {
+                        sendEmailNotification();
+                    }
 
 
                     Deadline d = new Deadline(_dlName, _dlDescription, date.getTime(), _priority, _notify, color, _frequency);
@@ -201,6 +208,29 @@ public class AddDeadlineActivity extends AppCompatActivity {
                     pendingIntent);
         }
 
+    }
+
+    public void sendEmailNotification() {
+        Log.d("email", "We are sending email notification");
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        String to = controller.getCurrentUser().getEmail();
+        Log.d("email", to);
+        String subject = "KillDDL Deadline: " + deadlineName;
+        String message = "Description: " + deadlineDescription + "\n";
+        message += "Date: " + date;
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+        }
     }
 }
 

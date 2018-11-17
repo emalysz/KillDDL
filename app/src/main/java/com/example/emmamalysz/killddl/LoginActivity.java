@@ -64,6 +64,8 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 
+import Controller.KillDDLController;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -321,7 +323,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        final String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -362,6 +364,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("mytag", "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                KillDDLController controller = KillDDLController.getInstance();
+                                controller.getCurrentUser().setEmail(email);
                                 Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
                                 startActivity(intent);
                             } else {
