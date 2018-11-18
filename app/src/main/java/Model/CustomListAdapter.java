@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,19 +81,23 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
         }
 
         TextView timeRemaining = (TextView) mView.findViewById(R.id.time_remaining);
-        if (items.get(position) != null) {
-            if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 8640000000L) {
-                long deadlineTime = items.get(position).getDate().getTime();
+        Calendar c = Calendar.getInstance();
+
+        if (items.get(position) != null){
+            c.setTime(items.get(position).getDate());
+            if (Math.abs(c.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) < 86400000L){
+                long deadlineTime = c.getTimeInMillis();
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 System.out.print("deadlineTime: " + deadlineTime + " currentTime: " + currentTime);
                 long difference = deadlineTime - currentTime;
                 System.out.print("difference: " + difference);
-                if (difference <= 36000000L) {
+                if (difference <= 3600000L) {
                     timeRemaining.setText("< 1 H");
                     timeRemaining.setTextColor(Color.RED);
                 }
                 else {
-                    timeRemaining.setText(difference + " remaining");
+                    long minutesDifference = difference/3600000;
+                    timeRemaining.setText(minutesDifference+ " hrs");
                     timeRemaining.setTextColor(Color.RED);
                 }
             }
