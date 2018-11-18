@@ -94,10 +94,11 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
 
         if (items.get(position) != null){
             c.setTime(items.get(position).getDate());
+            long deadlineTime = c.getTimeInMillis();
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            long difference = deadlineTime - currentTime;
             if (Math.abs(c.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) < 86400000L){
-                long deadlineTime = c.getTimeInMillis();
-                long currentTime = Calendar.getInstance().getTimeInMillis();
-                long difference = deadlineTime - currentTime;
+
                 if (difference <= 3600000L){
                     timeRemaining.setText("< 1 hr");
                     timeRemaining.setTextColor(Color.RED);
@@ -107,6 +108,11 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
                     timeRemaining.setText(hoursDifference + " hrs");
                     timeRemaining.setTextColor(Color.RED);
                 }
+            }
+            else {
+                long daysDifference = difference/86400000;
+                timeRemaining.setText(daysDifference + " days");
+                timeRemaining.setTextColor(Color.RED);
             }
         }
 
