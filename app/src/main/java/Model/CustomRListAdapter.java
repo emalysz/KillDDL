@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,13 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
 
             holder.d = items.get(position);
             holder.textView.setTextColor(Color.BLACK);
-            holder.textView.setText(items.get(position).toString());
+           // holder.textView.setText(items.get(position).toString());
+            Date currTime = Calendar.getInstance().getTime();
+            if(items.get(position).getDate().getTime() - currTime.getTime() <= (60*60*1000) ){
+                holder.textView.setText(items.get(position).toString() + " (< 1 Hour)");
+            }else {
+                holder.textView.setText(items.get(position).toString());
+            }
             holder.textView.setTextSize(15);
             holder.colorTab.setBackgroundColor(colorMap.get(items.get(position).getColor()));
 
@@ -107,6 +114,17 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         Deadline prev = items.remove(fromPosition);
         items.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
         notifyItemMoved(fromPosition, toPosition);
+        Log.d("dragTag", "fromPosition" + fromPosition);
+        Log.d("dragTag", "toPosition" + toPosition);
+//        controller.getCurrentUser().getDeadlines().set(toPosition)
+        //move everything else in the list down
+        controller.getCurrentUser().getDeadlines().get(toPosition).setNewPosition(toPosition);
+        items.get(toPosition).setIsDragged(true);
+        for (int i = 0; i < items.size(); i++) {
+            Log.d("dragTag", "item title " + items.get(i).getTitle());
+            Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
+        }
+        controller.getCurrentUser().setDeadlines(items);
     }
 
 

@@ -11,32 +11,13 @@ Directions:
     pass = tester123
 1c. Sign in with Facebook
 
-2. After signing in, you will be navigated to Monthly View where you can:
-    a) add deadlines
-    b) delete deadlines
-    c) view deadlines
-    
-3. From Monthly View you can navigate to Daily View by selecting a date on the calendar and pressing 'Daily' button at the top
-(otherwise you will be redirected to the current date's Daily View)
-
-4. On Daily View you can:
-    a) add deadlines
-    b) select to view a deadline
-    c) delete deadlines
+Improved capabilities: 
   
-5. Once a deadline is selected, you will be navigated to the Deadline View where you can:
-    a) mark deadline as 'Complete'
-    b) return to the Calendar View
-    c) edit deadline
-    d) delete deadline
-  
-  
-  Notes:
-  
-  - For Drag-and-Drop feature: We were able to implement drag-and-drop to change the priority of a deadline in Calendar View. 
-  However, it negatively affected other app functionality. This is a feature we plan to correctly implement in the next 
-  sprint. We have a commit on the branch 'CarolineCalendar' where you can view this feature.
-  - Frequency: Be aware that setting a high-frequency deadline, such as daily, will populate the calendar and deadline list 
-  with multiple deadlines. 
+  - Drag-and-drop: We were able to implement drag-and-drop to change the priority of a deadline in Calendar View. 
+     A user can now drag a deadline to the top if they would like to change the deadline's priority. 
+  - Weekly frequency: An additional option for the user aside from daily and monthly frequency. 
+  - Delete by swiping: A user can now swipe a deadline or click the red trash can icon to delete it. 
+  - Push notifications: A user can have the option to receive push notifications that will show up on the Android device. 
+  - Twitter login: In addition to creating a new account and connecting through Facebook, a user can now login through Twitter as well. 
  
   

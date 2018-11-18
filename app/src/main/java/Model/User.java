@@ -27,6 +27,14 @@ public class User {
 //        return isUser;
 //    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void addDeadline(Deadline d){
 
         deadlines.add(d);
@@ -89,4 +97,6 @@ public class User {
             }
         }
     }
+
+    public void setDeadlines(List<Deadline> deadlines) { this.deadlines = deadlines; }
 }

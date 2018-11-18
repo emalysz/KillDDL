@@ -19,6 +19,7 @@ import com.example.emmamalysz.killddl.R;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class CustomListAdapter extends ArrayAdapter<Deadline> {
         {
           //  text.setTextColor(Color.WHITE);
             text.setTextColor(Color.BLACK);
+            Date currTime = Calendar.getInstance().getTime();
             text.setText(items.get(position).toString());
             text.setTextSize(15);
             colorTab.setBackgroundColor(colorMap.get(items.get(position).getColor()));
