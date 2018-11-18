@@ -52,8 +52,10 @@ public class KillDDLController {
         List<Deadline> userDeadlines = currentUser.getDeadlines();
         List<Deadline> monthDeadlines = new ArrayList<Deadline>();
         for (int i=0; i<userDeadlines.size(); i++) {
-            if (userDeadlines.get(i).getDate().getMonth() == date.getMonth()) {
-                monthDeadlines.add(userDeadlines.get(i));
+            if (userDeadlines.get(i).getDate().getYear() == date.getYear()) {
+                if (userDeadlines.get(i).getDate().getMonth() == date.getMonth()) {
+                    monthDeadlines.add(userDeadlines.get(i));
+                }
             }
         }
         return monthDeadlines;
@@ -76,8 +78,10 @@ public class KillDDLController {
                 Calendar cal2 = Calendar.getInstance();
                 cal1.setTime(userDeadlines.get(i).getDate());
                 cal2.setTime(date);
-                if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)) {
-                    dayDeadlines.add(userDeadlines.get(i));
+                if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)) {
+                    if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)) {
+                        dayDeadlines.add(userDeadlines.get(i));
+                    }
                 }
             }
         }

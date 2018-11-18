@@ -119,8 +119,10 @@ public class EditDeadlineActivity extends AppCompatActivity {
                     newDeadline.setNotification(notification.getProgress());
                     newDeadline.setPriority(priority.getProgress());
                     newDeadline.setFrequency(frequency.getProgress());
+                    date.setTime(calendarView.getDate());
                     int hour = timePicker1.getCurrentHour();
                     int min = timePicker1.getCurrentMinute();
+
                     date.setHours(hour);
                     date.setMinutes(min);
                     newDeadline.setDate(date);

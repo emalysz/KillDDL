@@ -48,10 +48,12 @@
             </intent-filter>
 
 
+
         </activity>
         <activity
             android:name=".CalendarActivity"
             android:label="KillDDL">
+
 
 
         </activity>
