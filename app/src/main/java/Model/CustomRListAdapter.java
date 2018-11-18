@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.example.emmamalysz.killddl.R;
 
+import org.w3c.dom.Text;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,11 +70,11 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             holder.textView.setTextColor(Color.BLACK);
            // holder.textView.setText(items.get(position).toString());
             Date currTime = Calendar.getInstance().getTime();
-            if(items.get(position).getDate().getTime() - currTime.getTime() <= (60*60*1000) ){
-                holder.textView.setText(items.get(position).toString() + " (< 1 Hour)");
-            }else {
+//            if(items.get(position).getDate().getTime() - currTime.getTime() <= (60*60*1000) ){
+//                holder.textView.setText(items.get(position).toString() + " (< 1 Hour)");
+//            }else {
                 holder.textView.setText(items.get(position).toString());
-            }
+          //  }
             holder.textView.setTextSize(15);
             holder.colorTab.setBackgroundColor(colorMap.get(items.get(position).getColor()));
 
@@ -87,6 +89,26 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
 
         }
 
+        TextView timeRemaining =  holder.timeTextView;
+        Calendar c = Calendar.getInstance();
+
+        if (items.get(position) != null){
+            c.setTime(items.get(position).getDate());
+            if (Math.abs(c.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) < 86400000L){
+                long deadlineTime = c.getTimeInMillis();
+                long currentTime = Calendar.getInstance().getTimeInMillis();
+                long difference = deadlineTime - currentTime;
+                if (difference <= 3600000L){
+                    timeRemaining.setText("< 1 hr");
+                    timeRemaining.setTextColor(Color.RED);
+                }
+                else {
+                    long hoursDifference = difference/3600000;
+                    timeRemaining.setText(hoursDifference + " hrs");
+                    timeRemaining.setTextColor(Color.RED);
+                }
+            }
+        }
 
 
         final int val = position;
@@ -140,6 +162,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             ItemTouchHelperViewHolder, View.OnClickListener {
 
         public final TextView textView;
+        public final TextView timeTextView;
         public final ImageView colorTab;
         public final Button deleteBtn;
         public final Context context;
@@ -148,6 +171,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         public ItemViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.listTextView);
+            timeTextView = itemView.findViewById(R.id.time_remaining);
             colorTab = itemView.findViewById(R.id.ColorTab);
             deleteBtn = itemView.findViewById(R.id.delete_btn);
             context = itemView.getContext();
