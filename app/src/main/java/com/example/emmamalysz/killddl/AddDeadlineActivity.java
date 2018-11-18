@@ -212,24 +212,19 @@ public class AddDeadlineActivity extends AppCompatActivity {
 
     public void sendEmailNotification() {
         Log.d("email", "We are sending email notification");
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        String to = controller.getCurrentUser().getEmail();
-        Log.d("email", to);
         String subject = "KillDDL Deadline: " + deadlineName;
         String message = "Description: " + deadlineDescription + "\n";
         message += "Date: " + date;
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","emalysz@usc.edu", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending", "");
-        } catch (android.content.ActivityNotFoundException ex) {
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        }
+        catch (android.content.ActivityNotFoundException ex) {
+            Log.d("MainActivity", "No email app installed!");
+            Toast.makeText(AddDeadlineActivity.this, "Uh...No email app?", Toast.LENGTH_SHORT).show();
         }
     }
 }

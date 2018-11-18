@@ -124,6 +124,11 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             Log.d("dragTag", "item title " + items.get(i).getTitle());
             Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
         }
+        for (int i = 0; i < items.size(); i++) {
+            if (i != toPosition) {
+                items.get(i).setIsDragged(false);
+            }
+        }
         controller.getCurrentUser().setDeadlines(items);
     }
 

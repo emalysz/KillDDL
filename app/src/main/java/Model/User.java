@@ -3,6 +3,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class User {
             }
 
         }
+        Collections.sort(deadlines);
     }
 
     public void removeDeadline(Deadline d){

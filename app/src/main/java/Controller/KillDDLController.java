@@ -56,22 +56,6 @@ public class KillDDLController {
                 monthDeadlines.add(userDeadlines.get(i));
             }
         }
-        Collections.sort(monthDeadlines);
-        for (int i = 0; i < monthDeadlines.size(); i++) {
-            if (monthDeadlines.get(i).getDraggedStatus() == true) {
-//                if we find something that has been dragged, we need to change it's value to that
-//                and move all the rest down from there
-                Log.d("dragTag", "we found a draggedStatus" + i);
-                int k = monthDeadlines.get(i).getPosition();
-                Deadline temp = monthDeadlines.get(i);
-                Log.d("dragTag", "k value" + k);
-                //we need to move everything after k down one
-                for (int j = k+1; j < monthDeadlines.size(); j++) {
-                    monthDeadlines.set(j, monthDeadlines.get(j-1));
-                }
-                monthDeadlines.set(k, temp);
-            }
-        }
         return monthDeadlines;
     }
 
@@ -95,24 +79,6 @@ public class KillDDLController {
                 if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)) {
                     dayDeadlines.add(userDeadlines.get(i));
                 }
-            }
-        }
-        Collections.sort(dayDeadlines);
-        for (int i = 0; i < dayDeadlines.size(); i++) {
-            if (dayDeadlines.get(i).getDraggedStatus() == true) {
-//                if we find something that has been dragged, we need to change it's value to that
-//                and move all the rest down from there
-                Log.d("dragTag", "we found a draggedStatus" + i);
-                int k = dayDeadlines.get(i).getPosition();
-                Deadline temp = dayDeadlines.get(i);
-                Log.d("dragTag", "k value" + k);
-                //we need to move everything after k down one
-                for (int j = k+1; j < dayDeadlines.size(); j++) {
-                    dayDeadlines.set(j, dayDeadlines.get(j-1));
-                }
-                dayDeadlines.set(k, temp);
-
-
             }
         }
         return dayDeadlines;
