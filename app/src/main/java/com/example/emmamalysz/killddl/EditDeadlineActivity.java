@@ -30,7 +30,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
     SeekBar notification;
     SeekBar priority;
     SeekBar frequency;
-    Date date;
+    Calendar date;
     Spinner spinner;
     int color;
     private CalendarView calendarView;
@@ -51,7 +51,7 @@ public class EditDeadlineActivity extends AppCompatActivity {
         priority = (SeekBar)findViewById(R.id.priority);
         frequency = (SeekBar)findViewById(R.id.frequency);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-        date = Calendar.getInstance().getTime();
+        date = Calendar.getInstance();
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
         spinner = (Spinner) findViewById(R.id.color_spinner);
         String[] colors={"Green","Blue","Red","Gray"};
@@ -99,7 +99,8 @@ public class EditDeadlineActivity extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                date = new Date(year,month,dayOfMonth);
+             //   date = new Date(year,month,dayOfMonth);
+                date.set(year, month, dayOfMonth);
             }
         });
 
@@ -119,13 +120,14 @@ public class EditDeadlineActivity extends AppCompatActivity {
                     newDeadline.setNotification(notification.getProgress());
                     newDeadline.setPriority(priority.getProgress());
                     newDeadline.setFrequency(frequency.getProgress());
-                    date.setTime(calendarView.getDate());
+                    newDeadline.setColor(color);
+                  //  date.setTime(calendarView.getDate());
                     int hour = timePicker1.getCurrentHour();
                     int min = timePicker1.getCurrentMinute();
-
-                    date.setHours(hour);
-                    date.setMinutes(min);
-                    newDeadline.setDate(date);
+                    date.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), hour, min);
+                  //  date.setHours(hour);
+                    //date.setMinutes(min);
+                    newDeadline.setDate(date.getTime());
 
                     int index = controller.getDeadlineID(d);
                     controller.editDeadline(index, newDeadline);
