@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import Controller.KillDDLController;
@@ -34,6 +35,7 @@ import static android.view.View.*;
 public class DeadlineView extends AppCompatActivity {
 
     KillDDLController controller = KillDDLController.getInstance();
+    Date currDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class DeadlineView extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("DEADLINE TO REMOVE", thisDeadline.toString());
                 controller.removeDeadline(dl);
-                Intent intent = new Intent(getApplicationContext(), DailyView.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 intent.putExtra("delete", (Serializable) thisDeadline);
                 startActivity(intent);
             }
