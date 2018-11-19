@@ -44,6 +44,7 @@ public class AddDeadlineActivity extends AppCompatActivity {
     SeekBar frequency;
     Calendar date;
     Spinner spinner;
+    Date currDate;
     int color;
     private CalendarView calendarView;
     private Object AdapterView;
@@ -125,10 +126,12 @@ public class AddDeadlineActivity extends AppCompatActivity {
 
 
                     Deadline d = new Deadline(_dlName, _dlDescription, date.getTime(), _priority, _notify, color, _frequency);
+                    currDate = date.getTime();
                     setNotificationUpdate(_notify);
                     controller.addDeadline(d);
                     Intent intent = new Intent(AddDeadlineActivity.this, DailyView.class);
                     intent.putExtra("new_deadline", (Serializable) d);
+                    intent.putExtra("selectedDate", currDate);
                     startActivity(intent);
                 }
 
