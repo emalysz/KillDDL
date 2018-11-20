@@ -21,8 +21,10 @@
             android:name=".MyReceiver"
             android:enabled="true"
             android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
         </receiver>
-
         <activity
             android:name=".AddDeadlineActivity"
             android:label="@string/new_tasks">

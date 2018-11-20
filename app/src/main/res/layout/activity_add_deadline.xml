@@ -194,6 +194,14 @@
                     android:gravity="center"
                     android:text="1 week"
                     android:textSize="10sp"/>
+                <TextView
+                    android:id="@+id/txtSize5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Immediately"
+                    android:textSize="10sp"/>
 
             </LinearLayout>
 
@@ -204,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:max="3"
+                android:max="4"
                 android:progress="1" />
 
             <TextView

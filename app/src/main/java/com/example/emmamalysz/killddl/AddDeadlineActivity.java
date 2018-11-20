@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -139,46 +140,29 @@ public class AddDeadlineActivity extends AppCompatActivity {
     }
 
     public void setNotificationUpdate(int notification) {
-//        Intent notifyIntent = new Intent(this, MyReceiver.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast
-//                (this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
-//                6000, pendingIntent);
 
-//        Intent intent = new Intent(this, MyReceiver.class);
-//        intent.putExtra("Message", "this is your notification");
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-//                intent, PendingIntent.FLAG_ONE_SHOT);
-        Intent intent;
-        PendingIntent pendingIntent;
+        Intent intent = new Intent(this, MyReceiver.class);
+        String value = "Deadline: " + deadlineName.getText().toString() + "  ";
+        value += "Description: " + deadlineDescription.getText().toString();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "MyNotifChannel2";
-            String description = "My description";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("MyNotifChannel2", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
 
-//        Uri defaultSoundUri = RingtoneManager
-//                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
-//                this).setSmallIcon(R.drawable.ic_android_black_24dp)
-//                .setContentTitle("CCD Message").setContentText("this is your notification")
-//                .setAutoCancel(true).setSound(defaultSoundUri)
-//                .setContentIntent(pendingIntent).setChannelId("MyNotifChannel2");;
-//
-//
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        intent.putExtra("Deadline Notification", value);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                intent, PendingIntent.FLAG_ONE_SHOT);
+
+        Uri defaultSoundUri = RingtoneManager
+                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
+                this).setSmallIcon(R.drawable.ic_android_black_24dp)
+                .setContentTitle("KillDDl Notification").setContentText(value)
+                .setAutoCancel(true).setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent).setChannelId("MyNotifChannel2");;
+
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Calendar calendar = Calendar.getInstance();
 
-//        notificationManager.notify(0, notificationBuilder.build());
         if (notification == 1) {
             Date date = new Date();
             date.setTime(System.currentTimeMillis() + (60 * 60 * 1000));
@@ -206,15 +190,17 @@ public class AddDeadlineActivity extends AppCompatActivity {
             pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR,
                     pendingIntent);
+        } else if (notification == 4) {
+            notificationManager.notify(0, notificationBuilder.build());
         }
 
     }
 
     public void sendEmailNotification() {
         Log.d("email", "We are sending email notification");
-        String subject = "KillDDL Deadline: " + deadlineName;
-        String message = "Description: " + deadlineDescription + "\n";
-        message += "Date: " + date;
+        String subject = "KillDDL Deadline: " + deadlineName.getText().toString();
+        String message = "Description: " + deadlineDescription.getText().toString() + "\n";
+        message += "Date: " + date.getTime();
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto","emalysz@usc.edu", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
