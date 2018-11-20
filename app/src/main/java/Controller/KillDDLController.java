@@ -11,6 +11,7 @@ import com.example.emmamalysz.killddl.LoginActivity;
 
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -44,8 +45,10 @@ public class KillDDLController {
 
 
     public List<Deadline> getDeadlines() {
+
         Collections.sort(currentUser.getDeadlines());
         return currentUser.getDeadlines();
+
     }
 
     public List<Deadline> getMonthlyDeadlines(Date date) {
@@ -85,6 +88,20 @@ public class KillDDLController {
                 }
             }
         }
+        if (dayDeadlines.size() > 0) {
+            if (dayDeadlines.get(0).getPos() != -1) {
+                Deadline[] ddls = new Deadline[dayDeadlines.size()];
+                for (int i=0; i<dayDeadlines.size(); i++) {
+                    ddls[dayDeadlines.get(i).getPos()] = dayDeadlines.get(i);
+                }
+                List<Deadline> ddlFinal = new ArrayList<Deadline>();
+                for (int i=0; i<ddls.length; i++) {
+                    ddlFinal.add(ddls[i]);
+                }
+                return ddlFinal;
+            }
+        }
+
         return dayDeadlines;
     }
 

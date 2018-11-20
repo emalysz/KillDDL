@@ -38,6 +38,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
     KillDDLController controller = KillDDLController.getInstance();
     private List<Deadline> items;
     private static RecyclerViewClickListener itemListener;
+    private boolean isDayView;
 
 
 
@@ -48,6 +49,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         colorMap.put(1, Color.rgb(9, 132, 227));
         colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
+        isDayView = false;
     }
 
     @Override
@@ -56,6 +58,10 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_list, parent, false);
         ItemViewHolder itemViewHolder = new ItemViewHolder(view);
         return itemViewHolder;
+    }
+
+    public void setIsDayView(boolean dayView) {
+        this.isDayView = true;
     }
 
     @Override
@@ -139,25 +145,30 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
 
     @Override
     public void onItemMove(int fromPosition, int toPosition) {
+        Log.d("ARR: ", items.toString());
         Deadline prev = items.remove(fromPosition);
         items.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
         notifyItemMoved(fromPosition, toPosition);
-        Log.d("dragTag", "fromPosition" + fromPosition);
-        Log.d("dragTag", "toPosition" + toPosition);
+        if (isDayView == true) {
+            Log.d("dragTag", "fromPosition" + fromPosition);
+            Log.d("dragTag", "toPosition" + toPosition);
 //        controller.getCurrentUser().getDeadlines().set(toPosition)
-        //move everything else in the list down
-        controller.getCurrentUser().getDeadlines().get(toPosition).setNewPosition(toPosition);
-        items.get(toPosition).setIsDragged(true);
-        for (int i = 0; i < items.size(); i++) {
-            Log.d("dragTag", "item title " + items.get(i).getTitle());
-            Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
-        }
-        for (int i = 0; i < items.size(); i++) {
-            if (i != toPosition) {
-                items.get(i).setIsDragged(false);
+            //move everything else in the list down
+            controller.getCurrentUser().getDeadlines().get(toPosition).setNewPosition(toPosition);
+            items.get(toPosition).setIsDragged(true);
+
+            for (int i = 0; i < items.size(); i++) {
+                items.get(i).setPos(i);
+                Log.d("dragTag", "item title " + items.get(i).getTitle());
+                Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
             }
+            for (int i = 0; i < items.size(); i++) {
+                if (i != toPosition) {
+                    items.get(i).setIsDragged(false);
+                }
+            }
+            controller.getCurrentUser().setDeadlines(items);
         }
-        controller.getCurrentUser().setDeadlines(items);
     }
 
 

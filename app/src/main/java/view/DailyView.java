@@ -69,9 +69,9 @@ public class DailyView extends AppCompatActivity {
 
         //ArrayAdapter<Deadline> arrayAdapter = new CustomListAdapter(DailyView.this ,
                // R.layout.custom_list , ddls);
-
         deadlineList = (RecyclerView) findViewById(R.id.deadline_list);
         CustomRListAdapter adapter = new CustomRListAdapter(ddls);
+        adapter.setIsDayView(true);
         deadlineList.setAdapter(adapter);
         deadlineList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 

@@ -28,6 +28,7 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     private Boolean isDragged;
     private static int deadlineID = 0;
     private int newPosition;
+    private int position;
 
     @Override
     public int compareTo(Deadline other){
@@ -45,6 +46,15 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         this.id = deadlineID;
         deadlineID++;
         frequency = _frequency;
+        position = -1;
+    }
+
+    public int getPos() {
+        return this.position;
+    }
+
+    public void setPos(int pos) {
+        this.position = pos;
     }
 
     public String getTitle(){
