@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -53,6 +54,7 @@ public class CalendarActivity extends AppCompatActivity {
     RecyclerView deadlineList;
     Button monthlyButton;
     Button dailyButton;
+    Button signoutButton;
     List<Deadline> ddls;
     Map<Integer, Integer> colorMap;
     CustomRListAdapter arrayAdapter;
@@ -60,6 +62,7 @@ public class CalendarActivity extends AppCompatActivity {
     Date currDate;
     Calendar curr;
     ItemTouchHelper mItemTouchHelper;
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
@@ -67,7 +70,6 @@ public class CalendarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         curr = Calendar.getInstance();
         currDate = curr.getTime();
@@ -85,6 +87,16 @@ public class CalendarActivity extends AppCompatActivity {
         colorMap.put(1, Color.rgb(9, 132, 227));
         colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
+
+//        signoutButton = (Button)findViewById(R.id.signoutButton);
+//        signoutButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // redirect to add deadline page
+//                mAuth.signOut();
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         monthlyButton = (Button)findViewById(R.id.monthlyButton);
@@ -132,6 +144,9 @@ public class CalendarActivity extends AppCompatActivity {
 
         monthAndYear.setText(new SimpleDateFormat("MMMM - yyyy").format(cal1.getTime()));
         List<Deadline> allDeadlines = controller.getDeadlines();
+
+        Log.d("HELLO", "hithree" + controller.getCurrentUser().getDeadlines().size());
+        Log.d("HELLO", "hifour" + controller.getDeadlines().size());
 
         for (int i=0; i<allDeadlines.size(); i++) {
             Deadline d = allDeadlines.get(i);

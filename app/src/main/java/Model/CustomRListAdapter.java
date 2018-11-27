@@ -87,7 +87,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             if (items.get(position).getDate().compareTo(Calendar.getInstance().getTime()) < 0) {
                 holder.textView.setPaintFlags(holder.textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
-            if (items.get(position).isCompleted()) {
+            if (items.get(position).getCompleted()) {
                 holder.textView.setPaintFlags(holder.textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
             int color = Color.argb( 200, 255, 64, 64 );
@@ -154,8 +154,8 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             Log.d("dragTag", "toPosition" + toPosition);
 //        controller.getCurrentUser().getDeadlines().set(toPosition)
             //move everything else in the list down
-            controller.getCurrentUser().getDeadlines().get(toPosition).setNewPosition(toPosition);
-            items.get(toPosition).setIsDragged(true);
+            controller.getCurrentUser().getDeadlines().get(toPosition).setPosition(toPosition);
+            items.get(toPosition).setDraggedStatus(true);
 
             for (int i = 0; i < items.size(); i++) {
                 items.get(i).setPos(i);
@@ -164,7 +164,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             }
             for (int i = 0; i < items.size(); i++) {
                 if (i != toPosition) {
-                    items.get(i).setIsDragged(false);
+                    items.get(i).setDraggedStatus(false);
                 }
             }
             controller.getCurrentUser().setDeadlines(items);

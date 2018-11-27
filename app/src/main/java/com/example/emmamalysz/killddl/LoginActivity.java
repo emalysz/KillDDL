@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.facebook.AccessToken;
@@ -53,6 +54,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.TwitterAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -65,6 +71,8 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 
 import Controller.KillDDLController;
+import Model.Deadline;
+import Model.User;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -89,12 +97,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
+    private KillDDLController controller;
     private View mLoginFormView;
     private TextView mLoggedInStatusTextView;
     private static final String TAG = "TwitterLogin";
     private TextView mStatusTextView;
     private TextView mDetailTextView;
     private TwitterLoginButton mLoginButton;
+    private String _email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -324,6 +334,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Store values at the time of the login attempt.
         final String email = mEmailView.getText().toString();
+        _email = email;
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -364,8 +375,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("mytag", "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                KillDDLController controller = KillDDLController.getInstance();
+                                controller = KillDDLController.getInstance();
+                                controller.setDatabase();
                                 controller.getCurrentUser().setEmail(email);
+                                final String[] parts = _email.split("@");
+                                final int length = parts[0].length();
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("deadlines");
+                                ref.addListenerForSingleValueEvent(
+                                        new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                                            String temp2 = postSnapshot.getKey().substring(0, length);
+                                            Log.d("HELLO", "temp2" + temp2);
+                                            Log.d("HELLO", "parts0" + parts[0]);
+                                            if (temp2.equals(parts[0])) {
+//                                                for (DataSnapshot child: postSnapshot.getChildren()) {
+//                                                    Log.d("HELLO", child.toString());
+//                                                }
+                                                Log.d("HELLO", "are we equal?");
+                                                Deadline post = postSnapshot.getValue(Deadline.class);
+                                                Log.d("HELLO", "title" + post.getTitle());
+                                                controller.getCurrentUser().addDeadline(post);
+                                            }
+                                        }
+                                        Log.d("HELLO", "Size check" + controller.getCurrentUser().getDeadlines().size());
+                                        Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        //handle databaseError
+                                    }
+                                });
+
+                                Log.d("HELLO", "second check" + controller.getCurrentUser().getDeadlines().size());
                                 Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
                                 startActivity(intent);
                             } else {
@@ -498,6 +543,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public static FirebaseAuth getAuth() {
         return mAuth;
+    }
+
+    private void collectDeadlines(Map<String,Object> users) {
+
+        KillDDLController controller = KillDDLController.getInstance();
+        User currentUser = controller.getCurrentUser();
+        String username = currentUser.getEmail();
+        String[] parts = _email.split("@");
+        int length = parts[0].length();
+
+        //iterate through each user, ignoring their UID
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+
+            //Get user map
+//            Object singleUser = entry.getValue();
+//            String temp = entry.getKey().substring(0, length);
+//            Log.d("MAP VALUE", entry.getKey().substring(0, length));
+//            if (temp.equals(parts[0])) {
+//                currentUser.addDeadline(singleUser);
+//            }
+        }
+
     }
 }
 

@@ -27,10 +27,16 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 import java.util.Date;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import Controller.KillDDLController;
 import Model.Deadline;
@@ -125,8 +131,14 @@ public class AddDeadlineActivity extends AppCompatActivity {
                         sendEmailNotification();
                     }
 
-
+                    String userID = controller.getCurrentUser().getEmail();
+                    String[] parts = userID.split("@");
+                    DatabaseReference mDatabase = controller.getDatabase();
+                    String key = mDatabase.child("deadlines").push().getKey();
                     Deadline d = new Deadline(_dlName, _dlDescription, date.getTime(), _priority, _notify, color, _frequency);
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/deadlines/" + parts[0] + "*" + key, d);
+                    mDatabase.updateChildren(childUpdates);
                     currDate = date.getTime();
                     setNotificationUpdate(_notify);
                     controller.addDeadline(d);

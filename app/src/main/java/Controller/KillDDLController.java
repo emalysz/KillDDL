@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 
 import com.example.emmamalysz.killddl.CalendarActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.Month;
 import java.util.ArrayList;
@@ -28,6 +30,9 @@ public class KillDDLController {
 
     private static KillDDLController killDDLController;
     private User currentUser;
+    private DatabaseReference mDatabase;
+    private int reload;
+
 
     public KillDDLController() {
 
@@ -35,6 +40,8 @@ public class KillDDLController {
         this.currentUser = new User("Caroline", "a@usc.edu","pass123",847271702);
 
     }
+
+
 
     public static KillDDLController getInstance() {
         if (killDDLController == null) {
@@ -69,6 +76,14 @@ public class KillDDLController {
     }
     public User getCurrentUser() {
         return this.currentUser;
+    }
+
+    public void setDatabase () {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public DatabaseReference getDatabase() {
+        return mDatabase;
     }
 
     public List<Deadline> getDayDeadlines(Date date) {

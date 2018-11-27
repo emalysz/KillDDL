@@ -6,6 +6,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.example.emmamalysz.killddl.MyReceiver;
 
@@ -19,8 +20,9 @@ public class Deadline implements Serializable, Comparable<Deadline> {
 
     private String title, description;
     private Date date;
+    private String email2;
     private int priority;
-    private Boolean isComplete;
+    private Boolean completed;
     private int notification;
     private int color;
     private int frequency;
@@ -34,6 +36,12 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public int compareTo(Deadline other){
         return date.compareTo(other.getDate());
     }
+
+    public Deadline() {
+        Log.d("HELLO", "I am here" );
+
+    }
+
     public Deadline(String _title, String _description, Date _date, int _priority, int _notification, int _color, int _frequency){
         title = _title;
         description = _description;
@@ -41,7 +49,7 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         priority = _priority;
         notification = _notification;
         color = _color;
-        isComplete = false;
+        completed = false;
         isDragged = false;
         this.id = deadlineID;
         deadlineID++;
@@ -77,6 +85,8 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public int getId() {
         return this.id;
     }
+
+    public void setId(int id) { this.id = id; }
 
 
     @Override
@@ -130,15 +140,15 @@ public class Deadline implements Serializable, Comparable<Deadline> {
 
     public void setNotification(int notification) {this.notification = notification;}
 
-    public Boolean isCompleted() {
-        return isComplete;
+    public Boolean getCompleted() {
+        return completed;
     }
 
-    public void setIsComplete(Boolean isComplete) {
-        this.isComplete = isComplete;
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 
-    public void setIsDragged(Boolean isDragged) { this.isDragged = isDragged; }
+    public void setDraggedStatus(Boolean isDragged) { this.isDragged = isDragged; }
 
     public Boolean getDraggedStatus() { return isDragged; }
 
@@ -148,13 +158,12 @@ public class Deadline implements Serializable, Comparable<Deadline> {
 
     public void setFrequency(int frequency) {this.frequency = frequency;}
 
-    public void setIsComplete() {
-        this.isComplete = true;
-    }
-
-    public void setNewPosition(int newPosition) { this.newPosition = newPosition; }
+    public void setPosition(int newPosition) { this.newPosition = newPosition; }
 
     public int getPosition() { return newPosition; }
+
+    public void setIsComplete() { this.completed = true; }
+
 
 
 

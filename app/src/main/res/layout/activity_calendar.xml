@@ -16,6 +16,16 @@
         <!--android:gravity="center"-->
         <!--android:textColor="#FFF"-->
         <!--android:textSize="30dp"/>-->
+    <!--<Button-->
+        <!--android:id="@+id/signoutButton"-->
+        <!--android:layout_width="70dp"-->
+        <!--style="@style/Widget.AppCompat.Button.Colored"-->
+        <!--android:backgroundTint="#4D90FE"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:text="Sign Out"-->
+        <!--android:textSize="10dp"-->
+        <!--android:layout_margin="0dp"-->
+        <!--/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center"

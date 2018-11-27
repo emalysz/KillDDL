@@ -37,7 +37,6 @@ public class User {
     }
 
     public void addDeadline(Deadline d){
-
         deadlines.add(d);
         if (d.getFrequency() == 1) {
             Calendar c = Calendar.getInstance();
