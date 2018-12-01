@@ -88,15 +88,15 @@ public class CalendarActivity extends AppCompatActivity {
         colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
 
-//        signoutButton = (Button)findViewById(R.id.signoutButton);
-//        signoutButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                // redirect to add deadline page
-//                mAuth.signOut();
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        signoutButton = (Button)findViewById(R.id.signoutButton);
+        signoutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // redirect to add deadline page
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         monthlyButton = (Button)findViewById(R.id.monthlyButton);
