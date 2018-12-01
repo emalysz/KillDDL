@@ -61,10 +61,28 @@ public class User {
             Calendar c = Calendar.getInstance();
             c.setTime(d.getDate());
             long time = c.getTimeInMillis();
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(d.getDate());
+            int month = cal2.get(Calendar.MONTH);
             for (int i=0; i<12; i++) {
-                time = time + 2592000000L;
+                if (month == 8 || month ==  3 || month ==  5 || month ==  10){
+                    time = time + 2593000000L ;
+                }
+                else if (month == 12 || month == 2 || month == 4 || month == 6 || month == 7 ||
+                        month == 9 || month == 11){
+                    time = time + 2679000000L;
+                }
+                else if (month == 1){
+                    time = time + 2420000000L;
+
+                }
+
                 deadlines.add(new Deadline(d.getTitle(), d.getDescription(), new Date(time),
                         d.getPriority(), d.getNotification(), d.getColor(), d.getFrequency()));
+                if (month == 12){
+                    month  = 0;
+                }
+                month++;
             }
 
         }

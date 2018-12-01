@@ -96,6 +96,7 @@ public class KillDDLController {
                 Calendar cal2 = Calendar.getInstance();
                 cal1.setTime(userDeadlines.get(i).getDate());
                 cal2.setTime(date);
+
                 if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)) {
                     if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)) {
                         dayDeadlines.add(userDeadlines.get(i));
