@@ -2,11 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/daily_view"
     android:orientation="vertical">
-
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/AppTheme">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="KillDDL "
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="#000"/>
+                <Button
+                    android:id="@+id/signoutButton"
+                    android:layout_width="70dp"
+                    android:layout_gravity="right"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:backgroundTint="#4D90FE"
+                    android:layout_height="45dp"
+                    android:text="Sign Out"
+                    android:textSize="10dp"
+                    android:layout_margin="0dp"
+                    />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -66,9 +100,9 @@
         android:orientation="vertical">
 
         <!--<ListView-->
-            <!--android:id="@+id/deadline_list"-->
-            <!--android:layout_width="406dp"-->
-            <!--android:layout_height="325dp" />-->
+        <!--android:id="@+id/deadline_list"-->
+        <!--android:layout_width="406dp"-->
+        <!--android:layout_height="325dp" />-->
         <android.support.v7.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/deadline_list"
@@ -86,9 +120,9 @@
     </LinearLayout>
 
     <!--<android.support.design.widget.BottomNavigationView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:menu="@menu/bottom_navigation_main" >-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:menu="@menu/bottom_navigation_main" >-->
     <!--</android.support.design.widget.BottomNavigationView>-->
 
 </LinearLayout>

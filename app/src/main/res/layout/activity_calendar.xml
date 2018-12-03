@@ -8,7 +8,41 @@
     android:background="@color/tw__solid_white"
     android:orientation="vertical"
     tools:context=".CalendarActivity">
-
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/AppTheme">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="KillDDL "
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="#000"/>
+                <Button
+                    android:id="@+id/signoutButton"
+                    android:layout_width="70dp"
+                    android:layout_gravity="right"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:backgroundTint="#4D90FE"
+                    android:layout_height="45dp"
+                    android:text="Sign Out"
+                    android:textSize="10dp"
+                    android:layout_margin="0dp"
+                    />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
     <!--<TextView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -16,17 +50,7 @@
         <!--android:gravity="center"-->
         <!--android:textColor="#FFF"-->
         <!--android:textSize="30dp"/>-->
-    <Button
-        android:id="@+id/signoutButton"
-        android:layout_width="70dp"
-        android:layout_gravity="right"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:backgroundTint="#4D90FE"
-        android:layout_height="45dp"
-        android:text="Sign Out"
-        android:textSize="10dp"
-        android:layout_margin="0dp"
-        />
+
 
 
     <LinearLayout
@@ -96,7 +120,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -136,15 +160,12 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:gravity="center">
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_button_calendar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_add_black_24dp" />
     </LinearLayout>
 

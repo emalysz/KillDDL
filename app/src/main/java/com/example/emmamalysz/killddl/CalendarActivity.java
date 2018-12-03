@@ -87,6 +87,8 @@ public class CalendarActivity extends AppCompatActivity {
         colorMap.put(1, Color.rgb(9, 132, 227));
         colorMap.put(2, Color.rgb(255,118,117));
         colorMap.put(3, Color.GRAY);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         signoutButton = (Button)findViewById(R.id.signoutButton);
         signoutButton.setOnClickListener(new View.OnClickListener() {
