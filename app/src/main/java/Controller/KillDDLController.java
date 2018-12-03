@@ -127,6 +127,15 @@ public class KillDDLController {
 
     public void removeDeadline(Deadline deadline) {
         currentUser.removeDeadline(deadline);
+
+        String userID = this.getCurrentUser().getEmail();
+        String[] parts = userID.split("@");
+        DatabaseReference mDatabase = this.getDatabase();
+        String key = mDatabase.child("deadlines").push().getKey();
+        DatabaseReference node = FirebaseDatabase.getInstance().getReference().getRoot().child(key);
+        node.setValue(null);
+//        mDatabase.child(userID).removeValue();
+
     }
 
     public void addDeadline(Deadline deadline) {
