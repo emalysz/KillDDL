@@ -1,5 +1,9 @@
 package Model;
+import android.content.Intent;
 import android.util.Log;
+
+import com.example.emmamalysz.killddl.CalendarActivity;
+import com.example.emmamalysz.killddl.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,10 +15,10 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private int phoneNumber;
+    private long phoneNumber;
     List<Deadline> deadlines;
 
-    public User(String _name, String _email, String _password, int _phoneNumber){
+    public User(String _name, String _email, String _password, long _phoneNumber){
         name = _name;
         password = _password;
         email = _email;
@@ -22,11 +26,6 @@ public class User {
         deadlines = new ArrayList<Deadline>();
     }
 
-//    public Boolean authenticateUser(String email, String password){
-//        Boolean isUser = false;
-//
-//        return isUser;
-//    }
 
     public String getEmail() {
         return email;
@@ -92,17 +91,8 @@ public class User {
     public void removeDeadline(Deadline d){
 
         deadlines.remove(d);
-    }
-
-//    public void editDeadlines(List<Deadline> _deadlines){
-//        deadlines = _deadlines;
-//    }
-
-//    public Boolean deadlineExists(Deadline d){
-//        Boolean isDeadline = false;
 //
-//        return isDeadline;
-//    }
+    }
 
 
     public List<Deadline> getDeadlines() {

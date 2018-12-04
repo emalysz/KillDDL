@@ -20,6 +20,7 @@ import com.example.emmamalysz.killddl.AddDeadlineActivity;
 import com.example.emmamalysz.killddl.CalendarActivity;
 import com.example.emmamalysz.killddl.LoginActivity;
 import com.example.emmamalysz.killddl.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,8 @@ public class DailyView extends AppCompatActivity {
     KillDDLController controller = KillDDLController.getInstance();
     Date selectedDate;
     private ItemTouchHelper mItemTouchHelper;
+    Button signoutButton;
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,16 @@ public class DailyView extends AppCompatActivity {
             Calendar c = Calendar.getInstance();
             selectedDate = c.getTime();
         }
+        signoutButton = (Button)findViewById(R.id.signoutButton);
+        signoutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // redirect to add deadline page
+                mAuth.signOut();
+                controller.logOutUser();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         SimpleDateFormat sdf = new SimpleDateFormat("E, MMM dd, yyyy");
 

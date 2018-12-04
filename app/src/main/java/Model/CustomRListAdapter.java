@@ -152,7 +152,7 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
         if (isDayView == true) {
             Log.d("dragTag", "fromPosition" + fromPosition);
             Log.d("dragTag", "toPosition" + toPosition);
-//        controller.getCurrentUser().getDeadlines().set(toPosition)
+
             //move everything else in the list down
             controller.getCurrentUser().getDeadlines().get(toPosition).setPosition(toPosition);
             items.get(toPosition).setDraggedStatus(true);
@@ -165,6 +165,21 @@ public class CustomRListAdapter extends RecyclerView.Adapter<CustomRListAdapter.
             for (int i = 0; i < items.size(); i++) {
                 if (i != toPosition) {
                     items.get(i).setDraggedStatus(false);
+                }
+            }
+            controller.getCurrentUser().setDeadlines(items);
+        } else {
+            controller.getCurrentUser().getDeadlines().get(toPosition).setMonthPosition(toPosition);
+            items.get(toPosition).setMonthDraggedStatus(true);
+
+            for (int i = 0; i < items.size(); i++) {
+                items.get(i).setMonthPos(i);
+                Log.d("dragTag", "item title " + items.get(i).getTitle());
+                Log.d("dragTag", "item draggedStatus" + items.get(i).getDraggedStatus());
+            }
+            for (int i = 0; i < items.size(); i++) {
+                if (i != toPosition) {
+                    items.get(i).setMonthDraggedStatus(false);
                 }
             }
             controller.getCurrentUser().setDeadlines(items);

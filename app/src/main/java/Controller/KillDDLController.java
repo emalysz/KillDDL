@@ -17,10 +17,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 
 import Model.Deadline;
@@ -39,6 +41,10 @@ public class KillDDLController {
 
         this.currentUser = new User("Caroline", "a@usc.edu","pass123",847271702);
 
+    }
+
+    public void logOutUser() {
+        currentUser = null;
     }
 
 
@@ -68,6 +74,21 @@ public class KillDDLController {
                 }
             }
         }
+        if (monthDeadlines.size() > 0) {
+            if (monthDeadlines.get(0).getMonthPos() != -1) {
+                Deadline[] ddls = new Deadline[monthDeadlines.size()];
+                for (int i=0; i<monthDeadlines.size(); i++) {
+                    ddls[monthDeadlines.get(i).getMonthPos()] = monthDeadlines.get(i);
+                }
+                List<Deadline> ddlFinal = new ArrayList<Deadline>();
+                for (int i=0; i<ddls.length; i++) {
+                    ddlFinal.add(ddls[i]);
+                }
+                return ddlFinal;
+            }
+        }
+
+
         return monthDeadlines;
     }
 
@@ -75,6 +96,9 @@ public class KillDDLController {
         currentUser.setDeadlineComplete(deadline);
     }
     public User getCurrentUser() {
+        if (currentUser == null) {
+            this.currentUser = new User("Caroline", "a@usc.edu","pass123",847271702);
+        }
         return this.currentUser;
     }
 
@@ -127,6 +151,19 @@ public class KillDDLController {
 
     public void removeDeadline(Deadline deadline) {
         currentUser.removeDeadline(deadline);
+        String userID = getCurrentUser().getEmail();
+        String[] parts = userID.split("@");
+        DatabaseReference mDatabase = getDatabase();
+        mDatabase.child("deadlines").removeValue();
+        List<Deadline> lDeadlines = currentUser.getDeadlines();
+        Map<String, Object> childUpdates = new HashMap<>();
+        for (int i=0; i<lDeadlines.size(); i++) {
+            String key = mDatabase.child("deadlines").push().getKey();
+            childUpdates.put("/deadlines/" + parts[0] + "*" + key, lDeadlines.get(i));
+
+        }
+        mDatabase.updateChildren(childUpdates);
+
     }
 
     public void addDeadline(Deadline deadline) {
@@ -146,6 +183,17 @@ public class KillDDLController {
     public void editDeadline(int _id, Deadline editedDeadline) {
          List<Deadline> listDeadlines = getDeadlines();
          listDeadlines.set(_id, editedDeadline);
+         String userID = getCurrentUser().getEmail();
+         String[] parts = userID.split("@");
+         DatabaseReference mDatabase = getDatabase();
+         mDatabase.child("deadlines").removeValue();
+         List<Deadline> lDeadlines = currentUser.getDeadlines();
+         Map<String, Object> childUpdates = new HashMap<>();
+         for (int i=0; i<lDeadlines.size(); i++) {
+            String key = mDatabase.child("deadlines").push().getKey();
+            childUpdates.put("/deadlines/" + parts[0] + "*" + key, lDeadlines.get(i));
+         }
+        mDatabase.updateChildren(childUpdates);
     }
 
 

@@ -31,6 +31,9 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     private static int deadlineID = 0;
     private int newPosition;
     private int position;
+    private int monthNewPosition;
+    private int monthPosition;
+    private Boolean isMonthDragged;
 
     @Override
     public int compareTo(Deadline other){
@@ -55,6 +58,8 @@ public class Deadline implements Serializable, Comparable<Deadline> {
         deadlineID++;
         frequency = _frequency;
         position = -1;
+        monthNewPosition = -1;
+        monthPosition = -1;
     }
 
     public int getPos() {
@@ -64,6 +69,9 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public void setPos(int pos) {
         this.position = pos;
     }
+
+    public int getMonthPos() { return this.monthPosition; }
+    public void setMonthPos(int pos) { this.monthPosition = pos; }
 
     public String getTitle(){
         return title;
@@ -152,6 +160,10 @@ public class Deadline implements Serializable, Comparable<Deadline> {
 
     public Boolean getDraggedStatus() { return isDragged; }
 
+    public void setMonthDraggedStatus(Boolean isDragged) { this.isMonthDragged = isDragged; }
+
+    public Boolean getMonthDraggedStatus() { return isMonthDragged; }
+
     public int getFrequency(){
         return frequency;
     }
@@ -161,6 +173,10 @@ public class Deadline implements Serializable, Comparable<Deadline> {
     public void setPosition(int newPosition) { this.newPosition = newPosition; }
 
     public int getPosition() { return newPosition; }
+
+    public void setMonthPosition(int monthNewPosition) {this.monthNewPosition = monthNewPosition; }
+
+    public int getMonthPosition() { return monthNewPosition; }
 
     public void setIsComplete() { this.completed = true; }
 

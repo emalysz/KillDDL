@@ -125,7 +125,7 @@ public class SignupActivity extends LoginActivity{
                                 Log.d("checker", "successful??");
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                User user2 = new User(name, email, password, Integer.parseInt(phoneNumber));
+                                User user2 = new User(name, email, password, Long.parseLong(phoneNumber));
                                 Intent intent = new Intent(SignupActivity.this, CalendarActivity.class);
                                 startActivity(intent);
 //                                User currentUser = new User(name, email, password, Integer.parseInt(phoneNumber));

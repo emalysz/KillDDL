@@ -95,6 +95,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // redirect to add deadline page
                 mAuth.signOut();
+                controller.logOutUser();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
@@ -167,7 +168,9 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDayClick(Date dateClicked) {
                 List<Deadline> dayDeadlines = controller.getDayDeadlines(dateClicked);
-                deadlineList.setAdapter(new CustomRListAdapter(dayDeadlines));
+                CustomRListAdapter adapter = new CustomRListAdapter(dayDeadlines);
+                adapter.setIsDayView(true);
+                deadlineList.setAdapter(adapter);
                 deadlineTitle.setText(dateFormatDay.format(dateClicked));
                 currDate = dateClicked;
             }
@@ -176,7 +179,9 @@ public class CalendarActivity extends AppCompatActivity {
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 monthAndYear.setText(dateFormatMonth.format(firstDayOfNewMonth));
                 List<Deadline> monthDeadlines = controller.getMonthlyDeadlines(firstDayOfNewMonth);
-                deadlineList.setAdapter(new CustomRListAdapter( monthDeadlines));
+                CustomRListAdapter adapter = new CustomRListAdapter(monthDeadlines);
+                adapter.setIsDayView(false);
+                deadlineList.setAdapter(adapter);
                 deadlineTitle.setText("This Month");
                 currDate = curr.getTime();
 
@@ -184,19 +189,6 @@ public class CalendarActivity extends AppCompatActivity {
 
         });
 
-//
-//        deadlineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                Deadline selectedDeadline = (Deadline)deadlineList.getItemAtPosition(i);
-//                // change activity which is sent to DEADLINEVIEW
-//
-//                Intent intent = new Intent(getApplicationContext(), DeadlineView.class);
-//                intent.putExtra("Deadline", selectedDeadline);
-//                startActivity(intent);
-//            }
-//        });
     }
 
 }
