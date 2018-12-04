@@ -5,59 +5,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:textColor="#000"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:text="Test Title"/>
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:layout_marginLeft="25dp"
+            android:text="Test Title"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_marginTop="10dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:background="@drawable/ic_edit2" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="Test date"/>
+        android:background="@android:color/darker_gray" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+        <Button
+            android:id="@+id/back_button"
+            android:layout_alignParentRight="true"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:alpha="0.9"
+            android:layout_alignParentEnd="true"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_event_595b40b85ba036ed117dc50f"
+            />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            android:text="Test date"/>
+    </LinearLayout>
+
+
+
+
     <TextView
         android:id="@+id/description"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:layout_marginLeft="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:text="Test Title"/>
 
-    <Button
-        android:id="@+id/completed_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mark as Complete" />
+
+        <Button
+            android:id="@+id/completed_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mark as Completed"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/ic_checked"
+            android:paddingLeft="20dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="20sp"/>
+
+
+
 
     <Button
-        android:id="@+id/back_button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Calendar" />
-
-    <Button
-        android:id="@+id/edit_button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit" />
-
-    <Button
-        android:id="@+id/delete_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete" />
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableTop="@drawable/ic_trash_white"
+            android:paddingTop="9dp"
+            android:layout_gravity="center"
+            android:textColor="#FFF"
+            android:background="@android:color/holo_red_light"/>
 
     <!--<android.support.design.widget.BottomNavigationView-->
         <!--android:layout_width="match_parent"-->
